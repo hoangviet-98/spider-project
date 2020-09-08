@@ -1,4 +1,7 @@
 <?php
+
+use Illuminate\Support\Facades\Auth;
+
 if (!function_exists('upload_image')) {
     /**
      * @param $file [tên file trùng tên input]

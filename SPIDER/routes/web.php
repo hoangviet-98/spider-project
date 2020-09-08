@@ -14,3 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 include('route_admin.php');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -24,13 +24,43 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
+
+
                 <li class="{{ \Request::route()->getName() == 'get.dashboard.admin' ? 'active' : '' }}">
                     <a href="{{ route('get.dashboard.admin') }}">
                         <i class="fa fa-dashboard" aria-hidden="true"></i> <span>Dashboard</span>
 
                     </a>
                 </li>
-                
+
+                <li class="{{ \Request::route()->getName() == 'admin.get.list.admin' ? 'active' : '' }}">
+                    <a href="{{ route('admin.get.list.admin') }}">
+                        <i class="fa fa-magic" aria-hidden="true"></i> <span>Admin</span>
+
+                    </a>
+                </li>
+
+                <li class="{{ \Request::route()->getName() == 'admin.get.list.role' ? 'active' : '' }}">
+                    <a href="{{ route('admin.get.list.role') }}">
+                        <i class="fa fa-magic" aria-hidden="true"></i> <span>Role</span>
+
+                    </a>
+                </li>
+
+                <li class="{{ \Request::route()->getName() == 'admin.get.list.user' ? 'active' : '' }}">
+                    <a href="{{ route('admin.get.list.user') }}">
+                        <i class="fa fa-user-secret" aria-hidden="true"></i> <span>User</span>
+
+                    </a>
+                </li>
+
+{{--                <li class="{{ \Request::route()->getName() == 'admin.get.list.category' ? 'active' : '' }}">--}}
+{{--                    <a href="{{ route('admin.get.list.category') }}">--}}
+{{--                        <i class="fa fa-windows" aria-hidden="true"></i> <span>Category</span>--}}
+
+{{--                    </a>--}}
+{{--                </li>--}}
+
 
 
             </ul>
