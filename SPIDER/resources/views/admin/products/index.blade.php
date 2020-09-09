@@ -1,4 +1,4 @@
-@extends('admin::layouts.master')
+@extends('layouts.master_admin')
 
 @section('title')
     <title>List Product</title>
@@ -7,7 +7,6 @@
 @section('js')
     @parent
     <script src="admincontrol/js/sweetAlert2/js/sweetalert2@9.js"></script>
-    <script src="admincontrol/js/logInAdmin/js/list_product.js"></script>
     <script src="admincontrol/js/logInAdmin/js/list_product.js"></script>
 @endsection
 
@@ -47,7 +46,8 @@
                             <div class="box-tools">
                                 <form class="form-inline" action="" style="margin-bottom: 30px">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Search Name Product ..." name="name"
+                                        <input type="text" class="form-control" placeholder="Search Name Product ..."
+                                               name="name"
                                                value="{{ \Request::get('name') }}">
                                     </div>
 
@@ -67,60 +67,66 @@
                         </div>
                         <div class="box-body">
                             <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th style="width: 10px">ID</th>
-                            <th>Product Name</th>
-                            <th>Amount</th>
-                            <th>Category</th>
-                            <th>Image</th>
-                            <th>Status</th>
-                            <th colspan=3>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($hv_product as $product)
-                            <tr>
-                                <th>{{$product->id}}</th>
-                                <th>{{$product->pro_name}}</th>
-                                <th>{{$product->pro_number}}</th>
+                                <thead>
+                                <tr>
+                                    <th style="width: 10px">ID</th>
+                                    <th>Product Name</th>
+                                    <th>Amount</th>
+                                    <th>Category</th>
+                                    <th>Image</th>
+                                    <th>Status</th>
+                                    <th colspan=3>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($hv_product as $product)
+                                    <tr>
+                                        <th>{{$product->id}}</th>
+                                        <th>{{$product->pro_name}}</th>
+                                        <th>{{$product->pro_number}}</th>
 
-                                <td>{{$product->category->cat_name}}</td>
+                                        <td>{{$product->category->cat_name}}</td>
 
-                                <td>
-                                    <img src="{{pare_url_file($product->pro_avatar)}}" alt="" class="responsive">
-                                </td>
+                                        <td>
+                                            <img src="{{pare_url_file($product->pro_avatar)}}" alt=""
+                                                 class="responsive">
+                                        </td>
 
-                                <td>
-                                    <a href="{{ route('admin.get.action.product', ['active', $product->id]) }}" class="label {{$product->getStatus($product->pro_active ) ['class'] }} ">
+                                        <td>
+                                            <a href="{{ route('admin.get.action.product', ['active', $product->id]) }}"
+                                               class="label {{$product->getStatus($product->pro_active ) ['class'] }} ">
 
-                                        {{$product->getStatus($product->pro_active) ['name'] }}
+                                                {{$product->getStatus($product->pro_active) ['name'] }}
 
-                                    </a>
-                                </td>
+                                            </a>
+                                        </td>
 
-                                <td>
-                                    <a href="{{ route('admin.get.action.product', ['hot', $product->id]) }}" class="label {{$product->getHot($product->pro_hot ) ['class'] }} ">
+                                        <td>
+                                            <a href="{{ route('admin.get.action.product', ['hot', $product->id]) }}"
+                                               class="label {{$product->getHot($product->pro_hot ) ['class'] }} ">
 
-                                        {{$product->getHot($product->pro_hot) ['name'] }}
+                                                {{$product->getHot($product->pro_hot) ['name'] }}
 
-                                    </a>
-                                </td>
-                                <td>
+                                            </a>
+                                        </td>
+                                        <td>
 
-                                    <a style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px"
-                                       href="{{ route('admin.get.edit.product',$product->id)}}"> <i class="fa fa-pencil"> </i></a>
+                                            <a style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px"
+                                               href="{{ route('admin.get.edit.product',$product->id)}}"> <i
+                                                    class="fa fa-pencil"> </i></a>
 
-                                    <a href=""
-                                       style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px; color:red"
-                                       data-url="{{ route('admin.get.delete.product', $product->id)}}"
-                                       class="fa fa-trash-o action_delete"> </a>
-                                    @csrf
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                                            <a href=""
+                                               style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px; color:red"
+                                               data-url="{{ route('admin.get.delete.product', $product->id)}}"
+                                               class="fa fa-trash-o action_delete"> </a>
+                                            @csrf
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

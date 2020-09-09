@@ -64,6 +64,7 @@
                                     <th scope="col">ID</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Spa</th>
+                                    <th scope="col">Role</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Phone</th>
 {{--                                    <th scope="col">Address</th>--}}
@@ -76,6 +77,7 @@
                                         <th>{{$admin->id}}</th>
                                         <td>{{$admin->name}}</td>
                                         <td>{{isset($admin->spa->spa_name) ? $admin->spa->spa_name : 'N\A'}}</td>
+                                        <td>{{$admin->role_id}}</td>
                                         <td>{{$admin->email}}</td>
                                         <td>{{$admin->phone}}</td>
 {{--                                        <td>{{$admin->address}}</td>--}}

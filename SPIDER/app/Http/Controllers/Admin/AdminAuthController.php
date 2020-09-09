@@ -64,7 +64,7 @@ class AdminAuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        $admins->roles()->attach($request->role_id);
+        $admins->roles()($request->role_id);
         return redirect()->route('admin.get.list.admin');
     }
     public function edit($id)

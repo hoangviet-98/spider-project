@@ -1,3 +1,4 @@
+@if (Auth::guard('admins')->user()->role_id===0)
     <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
@@ -7,6 +8,7 @@
                     <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
+                    {{get_data_user('admins','name')}}
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -25,14 +27,14 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
 
-
+{{--                @if(Auth::user()->role_id ===1)--}}
                 <li class="{{ \Request::route()->getName() == 'get.dashboard.admin' ? 'active' : '' }}">
                     <a href="{{ route('get.dashboard.admin') }}">
                         <i class="fa fa-dashboard" aria-hidden="true"></i> <span>Dashboard</span>
 
                     </a>
                 </li>
-
+{{--                @endif--}}
                 <li class="{{ \Request::route()->getName() == 'admin.get.list.admin' ? 'active' : '' }}">
                     <a href="{{ route('admin.get.list.admin') }}">
                         <i class="fa fa-magic" aria-hidden="true"></i> <span>Admin</span>
@@ -54,12 +56,19 @@
                     </a>
                 </li>
 
-{{--                <li class="{{ \Request::route()->getName() == 'admin.get.list.category' ? 'active' : '' }}">--}}
-{{--                    <a href="{{ route('admin.get.list.category') }}">--}}
-{{--                        <i class="fa fa-windows" aria-hidden="true"></i> <span>Category</span>--}}
+                <li class="{{ \Request::route()->getName() == 'admin.get.list.category' ? 'active' : '' }}">
+                    <a href="{{ route('admin.get.list.category') }}">
+                        <i class="fa fa-windows" aria-hidden="true"></i> <span>Category</span>
 
-{{--                    </a>--}}
-{{--                </li>--}}
+                    </a>
+                </li>
+
+                <li class="{{ \Request::route()->getName() == 'admin.get.list.product' ? 'active' : '' }}">
+                    <a href="{{ route('admin.get.list.product') }}">
+                        <i class="fa fa-windows" aria-hidden="true"></i> <span>Product</span>
+
+                    </a>
+                </li>
 
 
 
@@ -67,3 +76,4 @@
         </section>
         <!-- /.sidebar -->
     </aside>
+@endif

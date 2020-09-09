@@ -17,3 +17,9 @@ include('route_admin.php');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/allroles', function ( ){
+    $admins = \App\Models\Admin::with('role')->first();
+
+    return $admins->role;
+
+});

@@ -3,21 +3,12 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::group(['prefix' => 'authenticate', 'namespace' => 'Admin\Auth'], function () {
-
-    Route::get('/login', 'AdminController@getLoginAdmin')->name('get.login.admin');
-
-    Route::post('/login', 'AdminController@postLoginAdmin');
-
-});
-
-Route::get('/logout', [
-    'as' => 'get.logout.admin',
-    'uses' => 'AdminController@logoutAdmin'
-]);
-
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix' => 'laravel-filemanager'], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
 //login Admin
@@ -88,6 +79,22 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
 
         Route::get('/delete/{id}', 'AdminCategoryController@delete') ->name('admin.get.delete.category');
         Route::get('/{action}/{id}', 'AdminCategoryController@action')->name('admin.get.action.category');
+    });
+
+
+    //Product
+    Route::group(['prefix' => 'product'], function () {
+
+        Route::get('/', 'AdminProductController@index') ->name('admin.get.list.product');
+
+        Route::get('/create', 'AdminProductController@create') ->name('admin.get.create.product');
+        Route::post('/create', 'AdminProductController@store');
+
+        Route::get('/update/{id}', 'AdminProductController@edit') ->name('admin.get.edit.product');
+        Route::post('/update/{id}', 'AdminProductController@update');
+
+        Route::get('/delete/{id}', 'AdminProductController@delete') ->name('admin.get.delete.product');
+        Route::get('/{action}/{id}', 'AdminProductController@action')->name('admin.get.action.product');
     });
 
 });

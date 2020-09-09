@@ -1,4 +1,4 @@
-@extends('admin::layouts.master')
+@extends('layouts.master_admin')
 
 @section('title')
     <title>Edit Product</title>

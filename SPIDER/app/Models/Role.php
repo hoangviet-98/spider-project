@@ -12,6 +12,6 @@ class Role extends Model
         'name', 'display_name',
     ];
     public function admins() {
-        return $this->hasMany('App\Model\Admin' , 'role_id', 'id');
+        return $this->hasMany('App\Models\Admin' , 'role_id', 'id');
     }
 }
