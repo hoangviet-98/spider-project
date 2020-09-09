@@ -7,7 +7,6 @@
 @section('js')
     @parent
     <script src="admincontrol/js/sweetAlert2/js/sweetalert2@9.js"></script>
-    <script src="admincontrol/js/logInAdmin/js/list_product.js"></script>
 @endsection
 
 @section('css')
@@ -75,6 +74,7 @@
                                     <th>Category</th>
                                     <th>Image</th>
                                     <th>Status</th>
+                                    <th>Hot</th>
                                     <th colspan=3>Actions</th>
                                 </tr>
                                 </thead>

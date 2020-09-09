@@ -22,8 +22,8 @@
         <section class="content">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <h1>{{Auth::guard('admins')->user()->role_id}} </h1>
-                @if (Auth::guard('admins')->user()->role_id===1)
+                <h1 style="margin-left: 200px">{{Auth::guard('admins')->user()->role_id}} </h1>
+{{--                @if (Auth::guard('admins')->user()->role_id===1)--}}
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
                         <div class="small-box bg-aqua">
@@ -38,7 +38,7 @@
                             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                @endif
+{{--                @endif--}}
 
                 <!-- ./col -->
                 <div class="col-lg-3 col-xs-6">

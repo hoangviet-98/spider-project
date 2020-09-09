@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="display-3">Update a Product</h1>
-                    <form method="post" action="{{ route('admin.get.update.product', $hv_product->id) }}" enctype="multipart/form-data">
+                    <form method="post" action="" enctype="multipart/form-data">
 
                     @csrf
                         <div class="form-group">

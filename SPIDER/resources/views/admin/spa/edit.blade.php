@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master_admin')
 
 @section('title')
     <title>Spa Update</title>
@@ -8,7 +8,7 @@
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('admin.partial.content-header', ['name' => 'Spa', 'key' => 'Update'])
+{{--    @include('admin.partial.content-header', ['name' => 'Spa', 'key' => 'Update'])--}}
 
     <p><a class="btn btn-primary" href="{{ url('/admin/spas') }}">Về danh sách</a></p>
 <div class="row">

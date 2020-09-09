@@ -7,12 +7,10 @@
 @section('js')
     @parent
     <script src="admincontrol/js/sweetAlert2/js/sweetalert2@9.js"></script>
-    <script src="admincontrol/js/logInAdmin/js/list_product.js"></script>
 @endsection
 
 @section('css')
     @parent
-    <link rel="stylesheet" href="admincontrol/js/logInAdmin/js/list_product.js">
 @endsection
 
 @section('content')
@@ -58,7 +56,8 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">                <table class="table table-bordered">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th style="width: 10px">ID</th>

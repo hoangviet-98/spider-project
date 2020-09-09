@@ -27,10 +27,6 @@ class Admin extends Authenticatable
         return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'role_admins', 'admins_id', 'role_id');
-    }
 
     public function spa()
     {

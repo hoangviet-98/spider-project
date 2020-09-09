@@ -97,4 +97,47 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::get('/{action}/{id}', 'AdminProductController@action')->name('admin.get.action.product');
     });
 
+    //Article
+    Route::group(['prefix' => 'article'], function () {
+
+        Route::get('/', 'AdminArticleController@index') ->name('admin.get.list.article');
+
+        Route::get('/create', 'AdminArticleController@create') ->name('admin.get.create.article');
+        Route::post('/create', 'AdminArticleController@store');
+
+        Route::get('/update/{id}', 'AdminArticleController@edit') ->name('admin.get.edit.article');
+        Route::post('/update/{id}', 'AdminArticleController@update');
+
+        Route::get('/delete/{id}', 'AdminArticleController@delete') ->name('admin.get.delete.article');
+        Route::get('/{action}/{id}', 'AdminArticleController@action')->name('admin.get.action.article');
+    });
+
+    //Spa
+    Route::group(['prefix' => 'spa'], function () {
+
+        Route::get('/', 'AdminSpaController@index') ->name('admin.get.list.spa');
+
+        Route::get('/create', 'AdminSpaController@create') ->name('admin.get.create.spa');
+        Route::post('/create', 'AdminSpaController@store');
+
+        Route::get('/update/{id}', 'AdminSpaController@edit') ->name('admin.get.edit.spa');
+        Route::post('/update/{id}', 'AdminSpaController@update');
+
+        Route::get('/delete/{id}', 'AdminSpaController@delete') ->name('admin.get.delete.spa');
+    });
+
+    //Employee
+    Route::group(['prefix' => 'employee'], function () {
+
+        Route::get('/', 'AdminEmployeeController@index') ->name('admin.get.list.employee');
+
+        Route::get('/create', 'AdminEmployeeController@create') ->name('admin.get.create.employee');
+        Route::post('/create', 'AdminEmployeeController@store');
+
+        Route::get('/update/{id}', 'AdminEmployeeController@edit') ->name('admin.get.edit.employee');
+        Route::post('/update/{id}', 'AdminEmployeeController@update');
+
+        Route::get('/delete/{id}', 'AdminEmployeeController@delete') ->name('admin.get.delete.employee');
+    });
+
 });

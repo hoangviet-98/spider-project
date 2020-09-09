@@ -70,62 +70,96 @@
 
 {{--Scripts js common--}}
 @section('js')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
 
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#out_img').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]); // convert to base64 string
-            }
-        }
-        $("#input_img").change(function() {
-            readURL(this);
-        });
-    </script>
+{{--    <script>--}}
+{{--        function readURL(input) {--}}
+{{--            if (input.files && input.files[0]) {--}}
+{{--                var reader = new FileReader();--}}
+{{--                reader.onload = function(e) {--}}
+{{--                    $('#out_img').attr('src', e.target.result);--}}
+{{--                }--}}
+{{--                reader.readAsDataURL(input.files[0]); // convert to base64 string--}}
+{{--            }--}}
+{{--        }--}}
+{{--        $("#input_img").change(function() {--}}
+{{--            readURL(this);--}}
+{{--        });--}}
+{{--    </script>--}}
 
-    <script type="text/javascript">
-        $(document).ajaxStart(function() {
-            Pace.restart();
-        });
-        $('ajax').click(function (){
-            $.ajax({
-                url: '#', success: function (result){
-                    $('.ajax-content').html('<hr> Ajax Request Completed !')
+{{--    <script type="text/javascript">--}}
+{{--        $(document).ajaxStart(function() {--}}
+{{--            Pace.restart();--}}
+{{--        });--}}
+{{--        $('ajax').click(function (){--}}
+{{--            $.ajax({--}}
+{{--                url: '#', success: function (result){--}}
+{{--                    $('.ajax-content').html('<hr> Ajax Request Completed !')--}}
+{{--                }--}}
+{{--            })--}}
+{{--        })--}}
+{{--        $(function() {--}}
+{{--            $(".js-preview-transaction").click(function (event) {--}}
+{{--                event.preventDefault();--}}
+{{--                let $this = $(this);--}}
+{{--                let URL = $this.attr('href');--}}
+{{--                $.ajax({--}}
+{{--                    url: URL,--}}
+{{--                }).done(function (results) {--}}
+{{--                    $("#modal-preview-transaction .content").html(results.html)--}}
+{{--                    $("#modal-preview-transaction").modal({--}}
+{{--                        show : true--}}
+{{--                    })--}}
+{{--                });--}}
+{{--                console.log("111");--}}
+{{--        })--}}
+{{--        // function showDetailOrder(id) {--}}
+{{--        //     console.log(id);--}}
+{{--        //     $('#myModalOrder').modal();--}}
+{{--        // }--}}
+{{--        });--}}
+{{--    </script>--}}
+
+{{--@show--}}
+        <script>
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#out_img').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]); // convert to base64 string
                 }
-            })
-        })
-        $(function() {
-            $(".js-preview-transaction").click(function (event) {
-                event.preventDefault();
-                let $this = $(this);
-                let URL = $this.attr('href');
-                $.ajax({
-                    url: URL,
-                }).done(function (results) {
-                    $("#modal-preview-transaction .content").html(results.html)
-                    $("#modal-preview-transaction").modal({
-                        show : true
-                    })
-                });
-                console.log("111");
-        })
-        // function showDetailOrder(id) {
-        //     console.log(id);
-        //     $('#myModalOrder').modal();
-        // }
-        });
-    </script>
+            }
+            $("#input_img").change(function() {
+                readURL(this);
+            });
+        </script>
+
+{{--        <script type="text/javascript">--}}
+{{--            $(document).ajaxStart(function() {--}}
+{{--                Pace.restart();--}}
+{{--            });--}}
+{{--            $('ajax').click(function (){--}}
+{{--                $.ajax({--}}
+{{--                    url: '#', success: function (result){--}}
+{{--                        $('.ajax-content').html('<hr> Ajax Request Completed !')--}}
+{{--                    }--}}
+{{--                })--}}
+{{--            })--}}
+
+{{--                // function showDetailOrder(id) {--}}
+{{--                //     console.log(id);--}}
+{{--                //     $('#myModalOrder').modal();--}}
+{{--                // }--}}
+{{--        </script>--}}
 
 @show
 

@@ -102,11 +102,6 @@
                                 <textarea name="pro_content" class="form-control my-editor" rows="8"></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Meta Title:</label>
-                                <input type="text" class="form-control" name="pro_title_seo	"
-                                       value="{{old('pro_title_seo', isset($hv_category->pro_title_seo) ? $hv_category->pro_title_seo : '')}}">
-                            </div>
-                            <div class="form-group">
                                 <label>Description Sale:</label>
                                 <input type="text" class="form-control" name="pro_description_seo"
                                        value="{{old('pro_description_seo',isset($hv_category->pro_description_seo)?$hv_category->pro_description_seo : '')}}">
@@ -131,6 +126,7 @@
                 </span>
                                 @endif
                             </div>
+
                             <div class="form-group">
                                 <img
                                     src="https://www.globe2.net/wp-content/plugins/accelerated-mobile-pages/images/SD-default-image.png"

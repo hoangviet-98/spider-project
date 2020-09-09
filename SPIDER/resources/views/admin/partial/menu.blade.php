@@ -1,4 +1,4 @@
-@if (Auth::guard('admins')->user()->role_id===0)
+{{--@if (Auth::guard('admins')->user()->role_id===0)--}}
     <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
@@ -70,10 +70,19 @@
                     </a>
                 </li>
 
+                <li class="{{ \Request::route()->getName() == 'admin.get.list.article' ? 'active' : '' }}">
+                    <a href="{{ route('admin.get.list.article') }}">
+                        <i class="fa fa-windows" aria-hidden="true"></i> <span>Article</span>
+                    </a>
+                </li>
 
-
+                <li class="{{ \Request::route()->getName() == 'admin.get.list.spa' ? 'active' : '' }}">
+                    <a href="{{ route('admin.get.list.spa') }}">
+                        <i class="fa fa-windows" aria-hidden="true"></i> <span>Spa</span>
+                    </a>
+                </li>
             </ul>
         </section>
         <!-- /.sidebar -->
     </aside>
-@endif
+{{--@endif--}}
