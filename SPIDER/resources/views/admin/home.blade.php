@@ -15,6 +15,14 @@
 
 @section('content')
     <div class="content-wrapper">
+
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+    @endif
+
+    {{ __('You are logged in!') }}
     <!-- Content Header (Page header) -->
         <section class="content-header">
         </section>

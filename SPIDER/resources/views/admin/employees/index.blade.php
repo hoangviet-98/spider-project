@@ -20,11 +20,11 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            @include('admin.partial.content-header', ['name' => 'Employee', 'key' => 'List'])
+{{--            @include('admin.partial.content-header', ['name' => 'Employee', 'key' => 'List'])--}}
         </section>
         <div class="back-home">
             <a style="margin: 19px"
-               href="{{ route('employees.create')}}" class="">
+               href="{{ route('admin.get.create.employee')}}" class="">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
                 New Employee</a>
         </div>
@@ -50,17 +50,18 @@
                             <th>{{$employee->id}}</th>
                             <td>{{$employee->emp_name}}</td>
                             <td>{{$employee->emp_address}}</td>
-                            <td><img src="{{$employee->emp_card}}" alt="" class="responsive"></td>
+                            <td><img src="{{pare_url_file($employee->emp_card)}}" alt="" class="responsive"></td>
                             <td>{{$employee->emp_phone}}</td>
                             <td>{{number_format($employee->emp_salary)}}</td>
-                            <td>{{$employee->getSpa->spa_name}}</td>
+{{--                            <td>{{$employee->emp_spa_id->spa_name}}</td>--}}
+                            <td>{{isset($employee->spa->spa_name) ? $employee->spa->spa_name : 'N\A'}}</td>
                             <td>
                                 <a style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px"
-                                   href="{{ route('employees.edit',$employee->id)}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                   href="{{ route('admin.get.edit.employee',$employee->id)}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
                                 <a href=""
                                    style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px; color:red"
-                                   data-url="{{ route('employees.delete', $employee->id)}}"
+                                   data-url="{{ route('admin.get.delete.employee', $employee->id)}}"
                                    class="fa fa-trash-o action_delete"> </a>
                                 @csrf
                             </td>

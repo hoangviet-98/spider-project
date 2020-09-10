@@ -17,11 +17,11 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            @include('admin.partial.content-header', ['name' => 'Employee', ' ' ,'key' => 'Edit'])
+{{--            @include('admin.partial.content-header', ['name' => 'Employee', ' ' ,'key' => 'Edit'])--}}
         </section>
         <div class="back-home">
         <p><a style="margin: 19px"
-              href="{{ url('/admin/employees') }}">
+              href="{{ url('/admin/employee') }}">
                 <i class="fa fa-arrow-circle-left"> </i>
                 Về danh sách</a></p>
     </div>
@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-sm-8 offset-sm-2">
                 <h1 class="display-3">Update a Employee</h1>
-                <form method="post" action="{{ route('employees.update', $hv_employee->id) }}"
+                <form method="post" action=""
                       enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
@@ -69,7 +69,7 @@
                         <label>Spa:</label>
                         <option value="">---Please choose Spa---</option>
                         @if(isset($hv_spa))
-                            <select class="form-control" name="spa_id">
+                            <select class="form-control" name="emp_spa_id">
                                 @foreach ($hv_spa as $spa_id)
                                     <option value="{{ $spa_id->id}}">{{$spa_id->spa_name}} </option>
                                 @endforeach

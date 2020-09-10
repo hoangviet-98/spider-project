@@ -81,6 +81,12 @@
                         <i class="fa fa-windows" aria-hidden="true"></i> <span>Spa</span>
                     </a>
                 </li>
+
+                <li class="{{ \Request::route()->getName() == 'admin.get.list.employee' ? 'active' : '' }}">
+                    <a href="{{ route('admin.get.list.employee') }}">
+                        <i class="fa fa-windows" aria-hidden="true"></i> <span>Employee</span>
+                    </a>
+                </li>
             </ul>
         </section>
         <!-- /.sidebar -->
