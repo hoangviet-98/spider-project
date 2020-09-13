@@ -141,4 +141,27 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
         Route::get('/delete/{id}', 'AdminEmployeeController@delete')->name('admin.get.delete.employee');
     });
 
+    // ql don hang
+    Route::group(['prefix' => 'transaction'], function () {
+        Route::get('/', 'AdminTransactionController@index')->name('admin.get.list.transaction');
+
+        Route::get('/delete/{id}', 'AdminTransactionController@delete')->name('admin.get.delete.transaction');
+        Route::get('order-delete/{id}', 'AdminTransactionController@deleteOrderItem')->name('ajax.admin.transaction.order_item');
+        Route::get('/view-transaction/{id}', 'AdminTransactionController@getTransactionDetail')->name('ajax.admin.transaction.detail');;
+        Route::get('/{action}/{id}', 'AdminTransactionController@action')->name('admin.get.action.transaction');;
+    });
+
+    // ql dat lich
+    Route::group(['prefix' => 'schedule'], function () {
+        Route::get('/', 'AdminScheduleController@index')->name('admin.get.list.schedule');
+        Route::get('/delete/{id}', [
+            'as' => 'admin.get.delete.schedule',
+            'uses' => 'AdminScheduleController@delete'
+        ]);
+        Route::get('/{action}/{id}', 'AdminScheduleController@action')->name('admin.get.action.schedule');
+    });    // ql thanh vien
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', 'AdminUserController@index')->name('admin.get.list.user');
+    });
+
 });

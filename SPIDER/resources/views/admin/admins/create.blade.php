@@ -11,7 +11,7 @@
         <!-- Content Header (Page header) -->
         {{--        @include('admin.partial.content-header', ['name' => 'User', ' ' ,'key' => 'Create'])--}}
         <p><a style="margin: 19px"
-              href="{{ url('/admin/admins') }}">
+              href="{{ url('/admin/auth') }}">
                 <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                 Về danh sách</a></p>
         <div class="container">
@@ -30,8 +30,8 @@
                                 <label>Spa</label>
                                 <select class="form-control" name="spa_id" required>
                                     <option value="">---Chọn chi nhánh spa---</option>
-                                    @foreach ($spa as $spa_id)
-                                        <option value="{{ $spa_id->id}}">{{$spa_id->name}} </option>
+                                @foreach ($spa as $spa_id)
+                                        <option value="{{ $spa_id->id}}">{{$spa_id->spa_name}}</option>
                                     @endforeach
                                 </select>
                             </div>

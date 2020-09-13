@@ -78,57 +78,50 @@
 
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-{{--    <script>--}}
-{{--        function readURL(input) {--}}
-{{--            if (input.files && input.files[0]) {--}}
-{{--                var reader = new FileReader();--}}
-{{--                reader.onload = function(e) {--}}
-{{--                    $('#out_img').attr('src', e.target.result);--}}
-{{--                }--}}
-{{--                reader.readAsDataURL(input.files[0]); // convert to base64 string--}}
-{{--            }--}}
-{{--        }--}}
-{{--        $("#input_img").change(function() {--}}
-{{--            readURL(this);--}}
-{{--        });--}}
-{{--    </script>--}}
-
-{{--    <script type="text/javascript">--}}
-{{--        $(document).ajaxStart(function() {--}}
-{{--            Pace.restart();--}}
-{{--        });--}}
-{{--        $('ajax').click(function (){--}}
-{{--            $.ajax({--}}
-{{--                url: '#', success: function (result){--}}
-{{--                    $('.ajax-content').html('<hr> Ajax Request Completed !')--}}
-{{--                }--}}
-{{--            })--}}
-{{--        })--}}
-{{--        $(function() {--}}
-{{--            $(".js-preview-transaction").click(function (event) {--}}
-{{--                event.preventDefault();--}}
-{{--                let $this = $(this);--}}
-{{--                let URL = $this.attr('href');--}}
-{{--                $.ajax({--}}
-{{--                    url: URL,--}}
-{{--                }).done(function (results) {--}}
-{{--                    $("#modal-preview-transaction .content").html(results.html)--}}
-{{--                    $("#modal-preview-transaction").modal({--}}
-{{--                        show : true--}}
-{{--                    })--}}
-{{--                });--}}
-{{--                console.log("111");--}}
-{{--        })--}}
-{{--        // function showDetailOrder(id) {--}}
-{{--        //     console.log(id);--}}
-{{--        //     $('#myModalOrder').modal();--}}
-{{--        // }--}}
-{{--        });--}}
-{{--    </script>--}}
-
-{{--@show--}}
-        <script>
+    <script src="bower_components/PACE/pace.min.js"></script>
+    <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script type="text/javascript">
+            // make Pace works on Ajax calls
+            $(document).ajaxStart(function () {
+                Pace.restart()
+            })
+            $('.ajax').click(function () {
+                $.ajax({
+                    url: '#' , success: function (result) {
+                        $('.ajax-content').html('<hr>Ajax Request Completa !')
+                    }
+                })
+            })
+            $(function () {
+                $(".js-preview-transaction").click(function (event) {
+                    event.preventDefault();
+                    let $this = $(this);
+                    let URL   = $this.attr('href');
+                    let ID    = $this.attr('data-id');
+                    $("#transaction_id").html("#" + ID);
+                    $.ajax({
+                        url: URL
+                    }).done(function (results) {
+                        console.log(results)
+                        $("#modal-preview-transaction .content").html(results.html)
+                        $("#modal-preview-transaction").modal({
+                            show : true
+                        })
+                    });
+                })
+                $('body').on("click", '.js-delete-order-item', function (event) {
+                   event.preventDefault();
+                   let URL    = $(this).attr('href');
+                   let $this  = $(this);
+                   $.ajax({
+                       url:URL
+                   }).done(function (results) {
+                        if (results.code == 200) {
+                            $this.parents("tr").remove();
+                        }
+                   })
+                });
+            })
             function readURL(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();

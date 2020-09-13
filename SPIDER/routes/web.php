@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +15,51 @@ use Illuminate\Support\Facades\Route;
 */
 
 include('route_admin.php');
+
+//Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/allroles', function ( ){
+//    $admins = \App\Models\Admin::with('role')->first();
+//
+//    return $admins->role;
+//
+//});
+
 Auth::routes();
+Route::group(['namespace' => 'Auth', 'prefix' => 'account'], function () {
+    Route::get('register', 'RegisterController@getRegister')->name('get.register');
+    Route::post('register', 'RegisterController@postRegister')->name('post.register');
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/allroles', function ( ){
-    $admins = \App\Models\Admin::with('role')->first();
+    Route::get('login', 'LoginController@getLogin')->name('get.login');
+    Route::post('login', 'LoginController@postLogin')->name('post.login');
 
-    return $admins->role;
+    Route::get('logout', 'LoginController@getLogout')->name('get.logout.user');
+});
+
+Route::group(['namespace' => 'Frontend'], function (){
+   Route::get('/','HomeController@index')->name('get.home');
+
+    Route::get('category/{slug}-{id}', 'CategoryController@getlistProduct')->name('get.list.product');
+    Route::get('/product','ProductController@index')->name('get.all.product');
+    Route::get('product/{slug}-{id}', 'ProductDetailController@productDetail')->name('get.detail.product');
+//Route::get('/schedule', 'Schedule@index')->name('schedule');
+
+    Route::prefix('shopping')->group(function () {
+        Route::get('/add/{id}', 'ShoppingCartController@addProduct')->name('add.shopping.cart');
+        Route::get('/category', 'ShoppingCartController@getListShoppingCart')->name('get.list.shopping.cart');
+        Route::get('/update-cart/{id}', 'ShoppingCartController@updateShoppingCart')->name('ajax_update.shopping.cart');
+        Route::get('/delete-cart/{id}', 'ShoppingCartController@deleteProductItem')->name('delete.shopping.cart');
+    });
+
+    Route::group(['prefix' => 'cart', 'middleware' => 'check_user_login'], function () {
+        Route::get('/pay', 'ShoppingCartController@getFormPay')->name('get.form.pay');
+        Route::post('/pay', 'ShoppingCartController@saveInfoShoppingCart');
+    });
+
+//Article
+    Route::get('post', 'ArticleController@getListArticle')->name('get.list.article');
+
+// Schedule
+    Route::get('schedule', 'ScheduleController@index')->name('get.schedule');
+    Route::post('schedule', 'ScheduleController@saveInfoSchedule');
 
 });

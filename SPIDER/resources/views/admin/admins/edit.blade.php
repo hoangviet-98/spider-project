@@ -43,9 +43,7 @@
                             <select class="form-control" name="role_id">
                                 <option value="">---Please choose Role---</option>
                                 @foreach ($role as $role)
-                                    <option
-                                        {{ $roleOfUser->contains('id', $role->id) ? 'selected' : '' }}
-                                        value="{{ $role->id}}">{{$role->name}} </option>
+                                    <option value="{{ $role->id}}">{{$role->name}} </option>
                                 @endforeach
                             </select>
                         </div>

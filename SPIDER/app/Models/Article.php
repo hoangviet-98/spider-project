@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $table = 'hv_article';
-    protected $guarded = [''];
+    protected$guarded = [''];
 }

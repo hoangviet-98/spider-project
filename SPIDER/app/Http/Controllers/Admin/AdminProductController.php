@@ -58,6 +58,7 @@ class AdminProductController extends Controller
         $hv_product->pro_name               = $requestProduct->pro_name;
         $hv_product->pro_slug               = str_slug($requestProduct->pro_name);
         $hv_product->pro_category_id        = $requestProduct->pro_category_id;
+        $hv_product->pro_price        = $requestProduct->pro_price;
 //        $hv_product->pro_active             = $requestProduct->pro_active;
 //        $hv_product->pro_hot                = $requestProduct->pro_hot;
 //        $hv_product->pro_view               = $requestProduct->pro_view;
@@ -80,7 +81,7 @@ class AdminProductController extends Controller
     public function update(RequestProduct $requestProduct, $id)
     {
         $this->insertOrUpdate($requestProduct, $id);
-        return redirect()->back();
+        return redirect()->route('admin.get.list.product');
     }
 
     public function delete($id)

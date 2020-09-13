@@ -1,4 +1,4 @@
-@extends('admin::layouts.master')
+@extends('layouts.master_admin')
 
 @section('title')
     <title>List Schedule</title>
@@ -97,7 +97,7 @@
                                 </ul>
                             </td>
                             <td>{{isset($schedule->s_service) ? $schedule->s_service : '[N\A]'}}</td>
-                            <td>{{isset($schedule->spa->name) ? $schedule->spa->name : '[N\A]'}}</td>
+                            <td>{{isset($schedule->spa->spa_name) ? $schedule->spa->spa_name : '[N\A]'}}</td>
                             <td>
                                 <a href="{{ route('admin.get.action.schedule', ['active', $schedule->id]) }}"
                                    class="label {{$schedule->getStatus($schedule->s_status ) ['class'] }} ">
@@ -121,12 +121,7 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
                                             <a href="{{route('admin.get.action.schedule', ['process', $schedule->id])}}">
-                                                <i class="fa fa-ban"></i> Dang giao hang
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{route('admin.get.action.schedule', ['success', $schedule->id])}}">
-                                                <i class="fa fa-ban"></i> Da giao hang
+                                                <i class="fa fa-ban"></i> Da tiep nhan
                                             </a>
                                         </li>
                                         <li>

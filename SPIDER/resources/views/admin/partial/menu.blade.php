@@ -27,14 +27,12 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
 
-{{--                @if(Auth::user()->role_id ===1)--}}
+                @if(Auth::user()->role_id ===1)
                 <li class="{{ \Request::route()->getName() == 'get.dashboard.admin' ? 'active' : '' }}">
                     <a href="{{ route('get.dashboard.admin') }}">
                         <i class="fa fa-dashboard" aria-hidden="true"></i> <span>Dashboard</span>
-
                     </a>
                 </li>
-{{--                @endif--}}
                 <li class="{{ \Request::route()->getName() == 'admin.get.list.admin' ? 'active' : '' }}">
                     <a href="{{ route('admin.get.list.admin') }}">
                         <i class="fa fa-magic" aria-hidden="true"></i> <span>Admin</span>
@@ -81,12 +79,26 @@
                         <i class="fa fa-windows" aria-hidden="true"></i> <span>Spa</span>
                     </a>
                 </li>
+                @endif
 
-                <li class="{{ \Request::route()->getName() == 'admin.get.list.employee' ? 'active' : '' }}">
-                    <a href="{{ route('admin.get.list.employee') }}">
-                        <i class="fa fa-windows" aria-hidden="true"></i> <span>Employee</span>
-                    </a>
-                </li>
+
+                @if(\Auth::user()->role_id ===2)
+                    <li class="{{ \Request::route()->getName() == 'admin.get.list.employee' ? 'active' : '' }}">
+                        <a href="{{ route('admin.get.list.employee') }}">
+                            <i class="fa fa-windows" aria-hidden="true"></i> <span>Employee</span>
+                        </a>
+                    </li>
+                    <li class="{{ \Request::route()->getName() == 'admin.get.list.transaction' ? 'active' : '' }}">
+                        <a href="{{ route('admin.get.list.transaction') }}">
+                            <i class="fa fa-windows" aria-hidden="true"></i> <span>Transaction</span>
+                        </a>
+                    </li>
+                    <li class="{{ \Request::route()->getName() == 'admin.get.list.schedule' ? 'active' : '' }}">
+                        <a href="{{ route('admin.get.list.schedule') }}">
+                            <i class="fa fa-windows" aria-hidden="true"></i> <span>Schedule</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </section>
         <!-- /.sidebar -->

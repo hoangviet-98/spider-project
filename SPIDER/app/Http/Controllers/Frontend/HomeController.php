@@ -3,9 +3,33 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderShipped;
+use App\Models\Article;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
-class HomeController extends Controller
+class HomeController extends FrontendController
 {
-    //
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function index()
+    {
+//        Mail::to('hoangviet180498@gmail.com')->send(new OrderShipped());
+
+        $productHot = Product::where([
+            'pro_hot' => Product::HOT_ON,
+            'pro_active' => Product::STATUS_PUBLIC
+        ])->limit(10)->get();
+        $articleNews = Article::orderBy('id', 'DESC')->limit(6)->get();
+        $viewData = [
+            'productHot' => $productHot,
+            'articleNews' => $articleNews
+
+        ];
+        return view('frontend.pages.home.index', $viewData);
+    }
 }

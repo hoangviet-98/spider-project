@@ -1,20 +1,23 @@
-@extends('admin::layouts.master')
+@extends('layouts.master_admin')
 
 @section('title')
     <title>List Transaction</title>
 @endsection
-
 @section('js')
     @parent
 
     <script src="admincontrol/js/sweetAlert2/js/sweetalert2@9.js"></script>
-    <script src="admincontrol/js/logInAdmin/js/list_product.js"></script>
-
+    {{--    <script src="admincontrol/js/logInAdmin/js/list_product.js"></script>--}}
+    {{--    <script src="admincontrol/js/table/dataTables.bootstrap.min.js"></script>--}}
+    {{--    <script src="admincontrol/js/table/jquery.dataTables.min.js"></script>--}}
+    {{--    <script src="admincontrol/js/table/table.js"></script>--}}
 
 @endsection
 
 @section('css')
     @parent
+    {{--    <link rel="stylesheet" href="admincontrol/css/bootstrap-table/dataTables.bootstrap.min.css">--}}
+
 @endsection
 
 @section('content')
@@ -61,9 +64,9 @@
                                 <tr>
                                     <th style="width: 10px">ID</th>
                                     <th>Info</th>
-                                    <th>Cart</th>
-                                    <th>Spa Name</th>
                                     <th>Total price</th>
+                                    <th>Day Create</th>
+                                    <th>Spa Name</th>
                                     <th>Status</th>
                                     <th colspan=3>Actions</th>
                                 </tr>
@@ -74,16 +77,18 @@
                                         <th>{{$transaction->id}}</th>
                                         <td>
                                             <ul style="text-align: left">
-                                                <li>Name: {{isset($transaction->users->name) ? $transaction->users->name : '[N\A]'}}</li>
+                                                <li>
+                                                    Name: {{isset($transaction->users->name) ? $transaction->users->name : '[N\A]'}}</li>
+                                                <li>
+                                                    Email: {{isset($transaction->tr_email) ? $transaction->tr_email : '[N\A]'}}</li>
                                                 <li>Address: {{$transaction->tr_address}}</li>
                                                 <li>Phone:{{$transaction->tr_phone}}</li>
                                             </ul>
                                         </td>
-                                        <td>{{ '[N\A]'}}</td>
-
-                                        <td>{{isset($transaction->spa->name) ? $transaction->spa->name : '[N\A]'}}</td>
                                         <td>{{$transaction->tr_total}}</td>
+                                        <td>{{$transaction->created_at}}</td>
 
+                                        <td>{{isset($transaction->spa->spa_name) ? $transaction->spa->spa_name : '[N\A]'}}</td>
                                         <td>
                                             <a href="{{ route('admin.get.action.transaction', ['active', $transaction->id]) }}"
                                                class="label {{$transaction->getStatus($transaction->tr_status ) ['class'] }} ">
@@ -92,23 +97,43 @@
 
                                             </a>
                                         </td>
-                                        {{--                                @if ($transaction->tr_status == 1)--}}
-                                        {{--                                    <a href="#" class="label-success label">Done</a>--}}
-                                        {{--                                    @else--}}
-                                        {{--                                    <a href="#" class="label-default label">Writing</a>--}}
-                                        {{--                                    @endif--}}
-                                        </td>
                                         <td>
-                                            <a style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px"
-                                               class="js-preview-transaction"
-                                               href="{{route('ajax.admin.transaction.detail', $transaction->id)}}"
-{{--                                               onclick="showDetailOrder({{$transaction->id}})"--}}
-                                                <i class="fa fa-eye "> </i></a>
-                                            <a href=""
-                                               style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px; color:red"
-                                               data-url="{{ route('admin.get.delete.transaction', $transaction->id)}}"
-                                               class="fa fa-trash-o action_delete"> </a>
-                                            @csrf</td>
+                                            <a data-id="{{$transaction->id}}"
+                                                href="{{route('ajax.admin.transaction.detail', $transaction->id)}}" class="js-preview-transaction"
+                                               style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px;"
+                                            ><i class="fa fa-eye"></i></a>
+
+                                            <div class="btn-group" style="">
+                                                <button type="button" class="btn btn-success btn-xs">Action</button>
+                                                <button type="button" class="btn btn-success btn-xs dropdown-toggle"
+                                                        data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="caret"></span>
+                                                    <span class="sr-only">Toogle Dropdown</span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href=""
+                                                           style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px; color:red"
+                                                           data-url="{{ route('admin.get.delete.transaction', $transaction->id)}}"
+                                                           class="fa fa-trash-o action_delete">Delete </a></li>
+                                                    <li>
+                                                        <a href="{{route('admin.get.action.transaction', ['process', $transaction->id])}}">
+                                                            <i class="fa fa-ban"></i> Dang giao hang
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{route('admin.get.action.transaction', ['success', $transaction->id])}}">
+                                                            <i class="fa fa-ban"></i> Da giao hang
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{route('admin.get.action.transaction', ['cancel', $transaction->id])}}">
+                                                            <i class="fa fa-ban"></i> Da huy
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            @csrf
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -124,7 +149,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Chi tiết đơn hàng #<b class="transaction_id"></b>
+                    <h5 class="modal-title" id="exampleModalLabel">Chi tiết đơn hàng #<b id="transaction_id"></b>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

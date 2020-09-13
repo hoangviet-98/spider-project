@@ -26,7 +26,6 @@ class AdminAuthController extends Controller
     public function index()
     {
 
-//        $admins = Admin::with('hv_spa:id,spa_name')->paginate(10);
         $admins = Admin::all();
         $role = $this->getRoles();
 

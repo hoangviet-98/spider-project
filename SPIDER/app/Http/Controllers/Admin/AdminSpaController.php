@@ -61,7 +61,7 @@ class AdminSpaController extends Controller
     public function delete($id)
     {
         try {
-            $this->spa->find($id)->delete();
+            Spa::find($id)->delete();
             return response()->json([
                 'code' => 200,
                 'message' => 'success'
