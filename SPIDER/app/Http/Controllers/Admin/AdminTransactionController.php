@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -13,11 +14,15 @@ class AdminTransactionController extends Controller
 {
     public function index()
     {
-        $transactions = Transaction::with('users:id,name')->paginate(10);
+        $transactions = Transaction::paginate(10);
         $viewData = [
             'transactions' => $transactions
         ];
         return view('admin.transaction.index', $viewData);
+//        if(Auth::guard('admins')->user()->role_id!=2) return abort('404');
+//        $id = Auth::id();
+//        $transactions = Transaction::where('tr_spa_id', $id)->orderBy('created_at')->paginate(10);
+//        return view('admin.transaction.index', compact('transactions'));
     }
 
     public function getTransactionDetail(Request $request, $id)

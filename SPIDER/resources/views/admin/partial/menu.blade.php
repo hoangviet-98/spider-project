@@ -25,7 +25,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
-        @if (Auth::guard('admins')->user()->role_id===1)
+{{--        @if (Auth::guard('admins')->user()->role_id===1)--}}
                 <li class="{{ \Request::route()->getName() == 'get.dashboard.admin' ? 'active' : '' }}">
                     <a href="{{ route('get.dashboard.admin') }}">
                         <i class="fa fa-dashboard" aria-hidden="true"></i> <span>Dashboard</span>
@@ -76,8 +76,8 @@
                         <i class="fa fa-windows" aria-hidden="true"></i> <span>Spa</span>
                     </a>
                 </li>
-                @endif
-        @if (Auth::guard('admins')->user()->role_id===2)
+{{--                @endif--}}
+{{--                @if (Auth::guard('admins')->user()->role_id===2)--}}
 
                     <li class="{{ \Request::route()->getName() == 'admin.get.list.employee' ? 'active' : '' }}">
                         <a href="{{ route('admin.get.list.employee') }}">
@@ -94,7 +94,7 @@
                             <i class="fa fa-windows" aria-hidden="true"></i> <span>Schedule</span>
                         </a>
                     </li>
-                    @endif
+{{--                    @endif--}}
             </ul>
         </section>
         <!-- /.sidebar -->
