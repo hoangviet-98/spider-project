@@ -1,4 +1,3 @@
-{{--@if (Auth::guard('admins')->user()->role_id===0)--}}
     <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
@@ -26,8 +25,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
-
-                @if(Auth::user()->role_id ===1)
+        @if (Auth::guard('admins')->user()->role_id===1)
                 <li class="{{ \Request::route()->getName() == 'get.dashboard.admin' ? 'active' : '' }}">
                     <a href="{{ route('get.dashboard.admin') }}">
                         <i class="fa fa-dashboard" aria-hidden="true"></i> <span>Dashboard</span>
@@ -39,7 +37,6 @@
 
                     </a>
                 </li>
-
                 <li class="{{ \Request::route()->getName() == 'admin.get.list.role' ? 'active' : '' }}">
                     <a href="{{ route('admin.get.list.role') }}">
                         <i class="fa fa-magic" aria-hidden="true"></i> <span>Role</span>
@@ -80,9 +77,8 @@
                     </a>
                 </li>
                 @endif
+        @if (Auth::guard('admins')->user()->role_id===2)
 
-
-                @if(\Auth::user()->role_id ===2)
                     <li class="{{ \Request::route()->getName() == 'admin.get.list.employee' ? 'active' : '' }}">
                         <a href="{{ route('admin.get.list.employee') }}">
                             <i class="fa fa-windows" aria-hidden="true"></i> <span>Employee</span>
@@ -98,9 +94,8 @@
                             <i class="fa fa-windows" aria-hidden="true"></i> <span>Schedule</span>
                         </a>
                     </li>
-                @endif
+                    @endif
             </ul>
         </section>
         <!-- /.sidebar -->
     </aside>
-{{--@endif--}}
