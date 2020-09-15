@@ -1,10 +1,10 @@
-@foreach($productHot as $hot)
+@foreach($productsNew as $new)
     <div class="col-md-3 col-sm-4 col-xs-12">
         <div class="single-post" style="margin-bottom: 40px">
             <div class="post-thumb">
-                <a href="{{route('get.detail.product', [$hot->pro_slug, $hot->id])}}">
+                <a href="{{route('get.detail.product', [$new->pro_slug, $new->id])}}">
                     <img style="width: 250px; height: auto"
-                         src="{{ asset(pare_url_file($hot->pro_avatar)) }}" alt=""/>
+                         src="{{ asset(pare_url_file($new->pro_avatar)) }}" alt=""/>
                 </a>
             </div>
             <div class="post-thumb-info">
@@ -15,9 +15,9 @@
                     <span>BootExperts</span>
                 </div>
                 <div class="postexcerpt">
-                    <p style="height: 40px">{{$hot->pro_name}}</p>
+                    <p style="height: 40px">{{$new->pro_name}}</p>
                     <hr>
-                    <a href="{{route('add.shopping.cart', $hot->id)}}"
+                    <a href="{{route('add.shopping.cart', $new->id)}}"
                        class="add_to_cart">ADD TO CART</a></div>
             </div>
         </div>

@@ -19,13 +19,18 @@ class HomeController extends FrontendController
     public function index()
     {
 //        Mail::to('hoangviet180498@gmail.com')->send(new OrderShipped());
-
+        $productsNew = Product::where('pro_active', 1)
+            ->orderByDesc('id')
+            ->limit(4)
+            ->select('id', 'pro_name', 'pro_slug', 'pro_avatar', 'pro_price')
+            ->get();
         $productHot = Product::where([
             'pro_hot' => Product::HOT_ON,
             'pro_active' => Product::STATUS_PUBLIC
         ])->limit(10)->get();
         $articleNews = Article::orderBy('id', 'DESC')->limit(6)->get();
         $viewData = [
+            'productsNew' => $productsNew,
             'productHot' => $productHot,
             'articleNews' => $articleNews
 

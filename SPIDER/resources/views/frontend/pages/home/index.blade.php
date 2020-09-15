@@ -82,10 +82,25 @@
             </div>
         </div>
         <div class="product" style="text-align: center; font-family: Open Sans, sans-serif;">
+            @if (isset($productsNew))
+                <div class="container">
+                    <div class="area-title">
+                        <h2>New Products</h2>
+                    </div>
+                    <div class="row">
+                        <div class="all-singlepost">
+                            <!-- single latestpost start -->
+                            @include('frontend.components.product_new')
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
+        <div class="product" style="text-align: center; font-family: Open Sans, sans-serif;">
             @if (isset($productHot))
                 <div class="container">
                     <div class="area-title">
-                        <h2>News Products</h2>
+                        <h2>Hot Products</h2>
                     </div>
                     <div class="row">
                         <div class="all-singlepost">
@@ -94,10 +109,8 @@
                         </div>
                     </div>
                 </div>
+            @endif
         </div>
-
-    </div>
-    @endif
     </div>
     <section class="hv-label" style="margin-top: 30px">
         <div class="card bg-dark text-white" style="text-align: center">

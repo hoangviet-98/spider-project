@@ -83,7 +83,9 @@
                                                 <small>Quantity:<span>{{$item->qty}}</span></small></div>
                                         </div>
                                         <div class="col-sm-3 col-xs-3 text-right">
-                                            <h6>{{number_format($item->price)}} VNĐ</h6>
+{{--                                            <h6>{{number_format($item->price)}} VNĐ</h6>--}}
+                                            <h6>{{number_format($item->price * $item->qty)}} VNĐ</h6>
+
                                         </div>
                                     </div>
                                     <div class="form-group">

@@ -7,7 +7,6 @@
             <th scope="col">Image</th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
             <th scope="col">Sub Total</th>
             <th scope="col">Action</th>
         </tr>
@@ -24,7 +23,7 @@
                 <td>{{$item->name}}</td>
                 <td>{{number_format($item->price)}} VNĐ</td>
                 <td>{{number_format($item->price * $item->qty)}} VNĐ</td>
-                <td>
+                <td style="margin-left: 30px">
                     <input type="number" name="quantity" id="qty"  value="{{$item->qty}}" min="1" style="width: 60px">
                     <a style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px;"
                        href="{{route('ajax_update.shopping.cart', $key)}}"
