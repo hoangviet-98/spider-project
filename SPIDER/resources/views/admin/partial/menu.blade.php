@@ -94,6 +94,18 @@
                             <i class="fa fa-windows" aria-hidden="true"></i> <span>Schedule</span>
                         </a>
                     </li>
+
+                <li class="{{ \Request::route()->getName() == 'admin.get.list.booking' ? 'active' : '' }}">
+                    <a href="{{ route('admin.get.list.booking') }}">
+                        <i class="fa fa-windows" aria-hidden="true"></i> <span>Booking</span>
+                    </a>
+                </li>
+
+                <li class="{{ \Request::route()->getName() == 'admin.get.list.menu' ? 'active' : '' }}">
+                    <a href="{{ route('admin.get.list.menu') }}">
+                        <i class="fa fa-windows" aria-hidden="true"></i> <span>Menu</span>
+                    </a>
+                </li>
 {{--                    @endif--}}
             </ul>
         </section>

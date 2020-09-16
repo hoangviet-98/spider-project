@@ -159,9 +159,39 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
             'uses' => 'AdminScheduleController@delete'
         ]);
         Route::get('/{action}/{id}', 'AdminScheduleController@action')->name('admin.get.action.schedule');
-    });    // ql thanh vien
+    });
+    // ql thanh vien
     Route::group(['prefix' => 'user'], function () {
         Route::get('/', 'AdminUserController@index')->name('admin.get.list.user');
+    });
+
+    //Menu
+    Route::group(['prefix' => 'menu'], function () {
+
+        Route::get('/', 'AdminMenuController@index')->name('admin.get.list.menu');
+
+        Route::get('/create', 'AdminMenuController@create')->name('admin.get.create.menu');
+        Route::post('/create', 'AdminMenuController@store');
+
+        Route::get('/update/{id}', 'AdminMenuController@edit')->name('admin.get.edit.menu');
+        Route::post('/update/{id}', 'AdminMenuController@update');
+
+        Route::get('/delete/{id}', 'AdminMenuController@delete')->name('admin.get.delete.menu');
+    });
+
+
+    //boking
+    Route::group(['prefix' => 'booking'], function () {
+        Route::get('/', 'AdminBookingController@index')->name('admin.get.list.booking');
+    });
+    Route::group(['prefix' => 'booking'], function () {
+        Route::get('/create', 'AdminBookingController@create')->name('admin.get.create.booking');
+           Route::post('/create', 'AdminBookingController@store');
+
+        Route::get('/update/{id}', 'AdminBookingController@edit')->name('admin.get.edit.booking');
+        Route::post('/update/{id}', 'AdminBookingController@update');
+
+        Route::get('/delete/{id}', 'AdminBookingController@delete')->name('admin.get.delete.booking');
     });
 
 });

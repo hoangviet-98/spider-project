@@ -24,7 +24,7 @@
     "use strict";
 
     // =================================================================================================================
-    // Service
+    // Services
 
     var plugin_count = 0;
 
@@ -803,7 +803,7 @@
             if ($.contains(this.$cache.cont[0], e.target) || this.dragging) {
                 this.callOnFinish();
             }
-            
+
             this.dragging = false;
         },
 
@@ -1713,7 +1713,7 @@
 
 
         // =============================================================================================================
-        // Service methods
+        // Services methods
 
         toggleInput: function () {
             this.$cache.input.toggleClass("irs-hidden-input");

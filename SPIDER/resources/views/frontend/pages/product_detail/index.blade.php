@@ -4,56 +4,19 @@
 @endsection
 @section('js')
     @parent
-    <script src="customer/js/product/jquery.elevateZoom-3.0.8.min.js"></script>
-    <script src="customer/js/product/jquery.scrollUp.min.js"></script>
-    <script src="customer/js/product/modernizr-2.8.3.min.js"></script>
+    <!-- <script src="customer/js/product/jquery.elevateZoom-3.0.8.min.js"></script> -->
+    <!-- <script src="customer/js/product/jquery.scrollUp.min.js"></script> -->
+    <!-- <script src="customer/js/product/modernizr-2.8.3.min.js"></script> -->
     <script src="customer/js/product/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 @endsection
 @section('css')
     @parent
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="customer/css/productindex.css">
-    <style>
-        div.stars {
-            width: 270px;
-            display: inline-block;
-        }
 
-        input.star { display: none; }
-
-        label.star {
-            padding: 1px;
-            font-size: 16px;
-            color: #444;
-            transition: all .2s;
-        }
-
-        input.star:checked ~ label.star:before {
-            content: '\f005';
-            color: #FD4;
-            transition: all .25s;
-        }
-
-        input.star-5:checked ~ label.star:before {
-            color: #FE7;
-            text-shadow: 0 0 20px #952;
-        }
-
-        input.star-1:checked ~ label.star:before { color: #F62; }
-
-        label.star:hover { transform: rotate(-15deg) scale(1.3); }
-
-        label.star:before {
-            content: '\f006';
-            font-family: FontAwesome;
-        }
-
-        #sticky-banner-target .right {
-            position: absolute;
-            right: 15px;
-        }
-    </style>
 @endsection
 @section('content')
 
@@ -61,7 +24,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="container-inner">
+                    <div class="container-inner" style="margin: 10px 0 20px 0">
                         <ul>
                             <li class="home">
                                 <a href="index.html">Home</a>
@@ -78,10 +41,6 @@
     <!-- product-details Area Start -->
     <div class="product-details-area">
         <div id="sticky-banner-target">
-        <a>dddddddddddd</a>
-        <a class="right" href="">
-        <img src="http://127.0.0.1:8000/uploads//2020/09/15/2020-09-15__2444282869e186d37857f05e9d23abea.jpg"></a>
-
         </div>
         <div class="container">
             <div class="row">
@@ -96,10 +55,10 @@
                     </div>
                 </div>
                 <div class="col-md-7 col-sm-7 col-xs-12">
-                    <div class="product-list-wrapper">
+                    <div class="product-li st-wrapper">
                         <div class="single-product">
                             <div class="product-content">
-                                <h2 class="product-name"><a href="#">{{$productDetail->pro_name}}</a></h2>
+                                <h1 class="product-name"><a href="#">{{$productDetail->pro_name}}</a></h1>
                                 <div class="rating-price">
                                     <div class="stars">
                                         <form action="">
@@ -116,22 +75,25 @@
                                         </form>
                                     </div>
                                     <div class="price-boxes">
-                                        <span class="new-price">{{number_format($productDetail->pro_price)}} VND</span>
+                                        <span class="new-price" style="color: red">{{number_format($productDetail->pro_price)}} VND</span>
                                     </div>
                                 </div>
                                 <div class="product-desc">
                                     <p>{{$productDetail->pro_description}}</p>
                                 </div>
-                                <p class="availability in-stock">Availability: <span>In stock</span></p>
+                                <div class="pro-view">
+                                    <p>
+                                        <span>View :&nbsp</span>
+                                        <span>{{$productDetail->pro_view}}</span>
+                                    </p>
+                                </div>
+                                <p class="availability in-stock">Quantity remaining in stock:{{number_format($productDetail->pro_number)}} </p>
                                 <div class="actions-e">
                                     <div class="action-buttons-single">
                                         <div class="inputx-content">
                                             <label for="qty">Quantity:</label>
                                             <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty"
                                                    class="input-text qty">
-                                        </div>
-                                        <div class="price-boxes">
-                                            <span class="new-price">{{number_format($productDetail->pro_number)}}</span>
                                         </div>
                                         <div class="add-to-cart">
                                             <a style="border: 1px solid red" href="{{route('add.shopping.cart', $productDetail->id)}}"
@@ -144,12 +106,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12"
+            style="display: block;
+            overflow: hidden;
+            border-top: 1px solid #e4e4e4;
+            margin-top: 15px;">
                 <div class="single-product-tab">
-                    <!-- Nav tabs -->
-                    <ul class="details-tab">
-                        <li class="active"><a href="#home" data-toggle="tab">Description</a></li>
-                    </ul>
+                <h2 style="color: #1B1B9D;
+    line-height: 29px;
+    margin-top: 30px;
+    font-size: 20px;
+">Đặc điểm nổi bật của Acer Aspire 3 A315 34 P26U N5030/4GB/256GB/Win10 (NX.HE3SV.00H)</h2>
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="home">
@@ -171,6 +138,47 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="product" style="text-align: center; font-family: Open Sans, sans-serif;">
+                @if (isset($productSuggests))
+                    <div class="container">
+                        <div class="area" style="border-top: 1px solid #e4e4e4; overflow: hidden">
+                            <h2>The same product.
+                            </h2>
+                        </div>
+                        <div class="row">
+                            <div class="all-singlepost">
+                                <!-- single latestpost start -->
+                                @foreach($productSuggests as $suggests)
+                                    <div class="col-md-3 col-sm-4 col-xs-12">
+                                        <div class="single-post" style="margin-bottom: 40px">
+                                            <div class="post-thumb">
+                                                <a href="{{route('get.detail.product', [$suggests->pro_slug, $suggests->id])}}">
+                                                    <img style="width: 250px; height: auto"
+                                                         src="{{ asset(pare_url_file($suggests->pro_avatar)) }}" alt=""/>
+                                                </a>
+                                            </div>
+                                            <div class="post-thumb-info">
+                                                <div class="post-time">
+                                                    <a href="#">Beauty</a>
+                                                    <span>/</span>
+                                                    <span>Post by</span>
+                                                    <span>BootExperts</span>
+                                                </div>
+                                                <div class="postexcerpt">
+                                                    <p style="height: 40px;  text-overflow: ellipsis;">{{$suggests->pro_name}}</p>
+                                                    <hr>
+                                                    <a href="{{route('add.shopping.cart', $suggests->id)}}"
+                                                       class="add_to_cart">ADD TO CART</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

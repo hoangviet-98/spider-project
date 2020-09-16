@@ -31,7 +31,7 @@ class LoginController extends Controller
     public function postLogin(RequestLogin $request)
     {
         if (Auth::guard('users')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->to('/');
+            return redirect()->route('get.home');
         }
         return redirect()->back();
     }

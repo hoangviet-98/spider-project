@@ -121,6 +121,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label>Category</label>
+                                <select class="form-control" name="pro_category_id">
+                                    <option value="">---Please choose Menu---</option>
+                                    @foreach ($hv_menu as $menu_id)
+                                        <option value="{{ $menu_id->id}}">{{$menu_id->mu_name}} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label>Image:</label>
                                 <input type="file" id="input_img" class="form-control-file" name="a_avatar">
                             </div>

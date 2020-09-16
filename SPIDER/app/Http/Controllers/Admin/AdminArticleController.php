@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RequestArticle;
 use App\Models\Article;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -15,17 +16,24 @@ class AdminArticleController extends Controller
         $hv_article = Article::whereRaw(1);
         if ($request->name) $hv_article->where('a_name', 'like', '%' .$request->name. '%');
         $hv_article = $hv_article->paginate(10);
+        $hv_menu = $this->getMenu();
+
         $viewData = [
-            'hv_article' => $hv_article
+            'hv_article' => $hv_article,
+            'hv_menu'    => $hv_menu
         ];
         return view('admin.article.index' , $viewData);
     }
 
     public function create()
     {
-        return view('admin.article.create');
+        $hv_menu = $this->getMenu();
+        return view('admin.article.create', compact('hv_menu'));
     }
-
+    public function getMenu()
+    {
+        return Menu::all();
+    }
     public function store(Request $request)
     {
         $this->insertOrUpdate($request);
@@ -42,6 +50,7 @@ class AdminArticleController extends Controller
         $hv_article->a_content          = $request->a_content;
         $hv_article->a_description_seo  = $request->a_description_seo;
         $hv_article->a_title_seo        = $request->a_title_seo;
+        $hv_article->a_menu_id          = $request->a_menu_id;
 
         if ($request->hasFile('a_avatar'))
         {

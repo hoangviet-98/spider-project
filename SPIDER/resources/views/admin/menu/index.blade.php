@@ -1,7 +1,7 @@
 @extends('layouts.master_admin')
 
 @section('title')
-    <title>List Category</title>
+    <title>List Menu</title>
 @endsection
 
 @section('js')
@@ -29,8 +29,8 @@
         </section>
         <div class="back-home">
             <a style="margin: 19px;"
-               href="{{ route('admin.get.create.category')}}" class=""> <i
-                    class="fa fa-plus-circle"> </i> New Category</a>
+               href="{{ route('admin.get.create.menu')}}" class=""> <i
+                    class="fa fa-plus-circle"> </i> New Menu</a>
         </div>
         <!-- Main content -->
         <section class="content">
@@ -61,42 +61,31 @@
                                     <thead>
                                     <tr>
                                         <th style="width: 10px">ID</th>
-                                        <th>Category Name</th>
+                                        <th>Menu Name</th>
                                         <th>Avatar</th>
-                                        <th>Active</th>
-                                        <th>Total Product</th>
                                         <th>Description</th>
-                                        <th>Keywork</th>
+                                        <th>Status</th>
                                         <th colspan=3>Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($hv_categories as $category)
+                                    @foreach($hv_menu as $menu)
                                         <tr>
-                                            <th>{{$category->id}}</th>
-                                            <th>{{$category->cat_name}}</th>
-                                            <td>{{$category->cat_avatar	}}</td>
-                                            <td>
-                                                <a href="{{ route('admin.get.action.category', ['active', $category->id]) }}"
-                                                   class="label {{$category->getStatus($category->cat_active ) ['class'] }} ">
+                                            <th>{{$menu->id}}</th>
+                                            <th>{{$menu->mu_name}}</th>
+                                            <td>{{$menu->mu_avatar	}}</td>
 
-                                                    {{$category->getStatus($category->cat_active) ['name'] }}
-
-                                                </a>
-                                            </td>
-                                            <td>{{$category->cat_total_product	}}</td>
-                                            <td>{{$category->cat_description	}}</td>
-                                            <td>{{$category->cat_keyword_seo	}}</td>
+                                            <td>{{$menu->mu_description	}}</td>
+                                            <td>{{$menu->mu_status	}}</td>
 
 
                                             <td>
                                                 <a style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px"
-                                                   href="{{ route('admin.get.edit.category',$category->id)}}"> <i
-                                                        class="fa fa-pencil"> </i></a>
+                                                   href="{{ route('admin.get.edit.menu',$menu->id)}}"> <i class="fa fa-pencil"> </i></a>
 
                                                 <a href=""
                                                    style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px; color:red"
-                                                   data-url="{{ route('admin.get.delete.category', $category->id)}}"
+                                                   data-url="{{ route('admin.get.delete.menu', $menu->id)}}"
                                                    class="fa fa-trash-o action_delete"> </a>
                                                 @csrf
                                             </td>

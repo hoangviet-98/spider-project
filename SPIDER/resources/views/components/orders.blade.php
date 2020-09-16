@@ -11,7 +11,7 @@
     </tr>
     @foreach($orders as $item)
     <tr>
-        <td>#{{$item->id}}</td>
+        <td>{{$item->id}}</td>
         <td><a href="">{{$item->product->pro_name}}</a></td>
         <td>
             <img src="{{pare_url_file($item->product->pro_avatar)}}" alt=""
