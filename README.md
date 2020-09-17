@@ -20,6 +20,7 @@ config:clear config:cache
 
 --- Account ---
 - Admin :
+
 viet098@gmail.com   => SuperAdmin
 
 staff_tx@gmail.com  => Admin  => Spa Thanh Xuân
@@ -29,7 +30,9 @@ staff_nk@gmail.com  => Admin  => Spa Nguyễn Khuyến
 staff_th@gmail.com  => Admin  => Spa Thái Hà 
 
 - Customer          
+
 hoangvviet180498@gmail.com    
 
 - Password 
+
 hoangtheviet
