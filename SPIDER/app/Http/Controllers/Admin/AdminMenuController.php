@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestMenu;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -22,9 +23,9 @@ class AdminMenuController extends Controller
         return view('admin.menu.create');
     }
 
-    public function store(Request $request)
+    public function store(RequestMenu $requestMenu)
     {
-        $this->insertOrUpdate($request);
+        $this->insertOrUpdate($requestMenu);
         return redirect()->route('admin.get.list.menu');
     }
 

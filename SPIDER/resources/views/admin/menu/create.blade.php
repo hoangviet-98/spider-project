@@ -33,14 +33,29 @@
                             <div class="form-group">
                                 <label for="mu_name">Name:</label>
                                 <input type="text" class="form-control" name="mu_name" value="{{old('mu_name')}}"/>
+                                @if($errors->has('mu_name'))
+                                    <span class="error-text">
+                  {{$errors->first('mu_name')}}
+                </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="mu_slug">Slug:</label>
                                 <input type="text" class="form-control" name="mu_slug"/>
+                                @if($errors->has('mu_slug'))
+                                    <span class="error-text">
+                  {{$errors->first('mu_slug')}}
+                </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="mu_description">Description:</label>
                                 <input type="text" class="form-control" name="mu_description"/>
+                                @if($errors->has('mu_description'))
+                                    <span class="error-text">
+                  {{$errors->first('mu_description')}}
+                </span>
+                                @endif
                             </div>
                             <button type="submit" class="btn btn-primary">Add Product</button>
                         </form>

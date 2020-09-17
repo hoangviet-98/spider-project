@@ -7,13 +7,16 @@ use App\Models\Article;
 use App\Models\Employee;
 use App\Models\Spa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class AdminEmployeeController extends Controller
 {
     public function index()
     {
-        $hv_employee = Employee::all();
+        $eid  = Auth::guard('admins')->user()->spa_id;
+        $hv_employee  = Employee::where('emp_spa_id', '=',$eid)->paginate(10);
+
         $hv_spa = $this->getSpa();
         $viewData = [
         'hv_employee' => $hv_employee,

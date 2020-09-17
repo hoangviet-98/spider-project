@@ -81,12 +81,12 @@
                 </div>
             </div>
         </div>
-        <div class="product" style="text-align: center; font-family: Open Sans, sans-serif;">
+        <div class="product" style="text-align: center; margin-top: 50px; font-family: Open Sans, sans-serif;">
             @if (isset($productsNew))
-                <div class="container">
-                    <div class="area-title">
-                        <h2>New Products</h2>
-                    </div>
+                <div class="container" style="border-top: 1px solid #e4e4e4">
+                    <h2>New Products</h2>
+                    {{--                    <div class="area-title">--}}
+{{--                    </div>--}}
                     <div class="row">
                         <div class="all-singlepost">
                             <!-- single latestpost start -->
@@ -96,12 +96,12 @@
                 </div>
             @endif
         </div>
-        <div class="product" style="text-align: center; font-family: Open Sans, sans-serif;">
+        <div class="product" style="text-align: center; font-family: Open Sans, sans-serif;;margin-top: 50px">
             @if (isset($productHot))
-                <div class="container">
-                    <div class="area-title">
+                <div class="container" style="border-top: 1px solid #e4e4e4" >
+{{--                    <div class="area-title">--}}
                         <h2>Hot Products</h2>
-                    </div>
+{{--                    </div>--}}
                     <div class="row">
                         <div class="all-singlepost">
                             <!-- single latestpost start -->
@@ -137,12 +137,12 @@
         </div>
     </section>
 
-    <div class="1" style="text-align: center; font-family: Open Sans, sans-serif;">
+    <div class="1" style="text-align: center; font-family: Open Sans, sans-serif; ;margin-top: 50px">
         @if (isset($articleNews))
-            <div class="container">
-                <div class="area-title">
+            <div class="container" style="border-top: 1px solid #e4e4e4">
+{{--                <div class="area-title">--}}
                     <h2>News Post</h2>
-                </div>
+{{--                </div>--}}
                 <div class="row">
                     <div class="all-singlepost">
                         <!-- single latestpost start -->

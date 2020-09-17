@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestAdmin;
 use App\Models\Admin;
 use App\Models\Role;
 use App\Models\Spa;
@@ -51,19 +52,21 @@ class AdminAuthController extends Controller
     public function create()
     {
         $spa = $this->getSpa();
-        $roles = $this->getRoles();
-        return view('admin.admins.create', compact('roles', 'spa'));
+        $role = $this->getRoles();
+        return view('admin.admins.create', compact('role', 'spa'));
     }
 
-    public function store(Request $request)
+    public function store(RequestAdmin $requestAdmin)
     {
         $admins = $this->admins->create([
-            'name' => $request->name,
-            'spa_id' => $request->spa_id,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-        $admins->roles()($request->role_id);
+            'name' => $requestAdmin->name,
+            'spa_id' => $requestAdmin->spa_id,
+            'email' => $requestAdmin->email,
+            'role_id' => $requestAdmin->role_id,
+            'phone' => $requestAdmin->phone,
+            'password' => Hash::make($requestAdmin->password),
+            ]);
+//        $admins->role()($requestAdmin->role_id);
         return redirect()->route('admin.get.list.admin');
     }
     public function edit($id)
@@ -75,25 +78,21 @@ class AdminAuthController extends Controller
         return view('admin.admins.edit', ['admins' => $admins,'spa' => $spa ,'role' => $roles, 'roleOfUser' => $roleOfUser]);
     }
 
-    public function update(Request $request, $id)
+    public function update(RequestAdmin $requestAdmin, $id)
     {
-        try {
-            DB::beginTransaction();
             $this->admins->find($id)->update([
-                'name' => $request->name,
-                'spa_id' => $request->spa_id,
-                'email' => $request->email,
+                'name' => $requestAdmin->name,
+                'spa_id' => $requestAdmin->spa_id,
+                'email' => $requestAdmin->email,
+                'role_id' => $requestAdmin->role_id,
+                'phone' => $requestAdmin->phone,
 //                'password' => Hash::make($request->password)
             ]);
             $admins = $this->admins->find($id);
-            $admins->roles()->sync($request->role_id);
-            DB::commit();
-            return redirect()->route('admin.get.list.admin');
-        } catch (\Exception $exception) {
-            DB::rollBack();
-            Log::error('Message :' . $exception->getMessage() . '--- Line: ' . $exception->getLine());
-        }
+            $admins->role()->sync($requestAdmin->role_id);
+            return redirect()->route('admin.get.list.admin', compact('role'));
     }
+
 
     public function delete($id)
     {

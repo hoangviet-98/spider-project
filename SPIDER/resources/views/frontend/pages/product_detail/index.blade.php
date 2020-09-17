@@ -16,7 +16,11 @@
     @parent
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="customer/css/productindex.css">
+    <link rel="stylesheet" href="customer/css/product-detail.css">
+    <style>
 
+
+    </style>
 @endsection
 @section('content')
 
@@ -54,57 +58,121 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7 col-sm-7 col-xs-12">
-                    <div class="product-li st-wrapper">
-                        <div class="single-product">
-                            <div class="product-content">
-                                <h1 class="product-name"><a href="#">{{$productDetail->pro_name}}</a></h1>
-                                <div class="rating-price">
-                                    <div class="stars">
-                                        <form action="">
-                                            <input class="star star-5" id="star-5" type="radio" name="star"/>
-                                            <label class="star star-5" for="star-5"></label>
-                                            <input class="star star-4" id="star-4" type="radio" name="star"/>
-                                            <label class="star star-4" for="star-4"></label>
-                                            <input class="star star-3" id="star-3" type="radio" name="star"/>
-                                            <label class="star star-3" for="star-3"></label>
-                                            <input class="star star-2" id="star-2" type="radio" name="star"/>
-                                            <label class="star star-2" for="star-2"></label>
-                                            <input class="star star-1" id="star-1" type="radio" name="star"/>
-                                            <label class="star star-1" for="star-1"></label>
-                                        </form>
-                                    </div>
-                                    <div class="price-boxes">
-                                        <span class="new-price" style="color: red">{{number_format($productDetail->pro_price)}} VND</span>
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <p>{{$productDetail->pro_description}}</p>
-                                </div>
-                                <div class="pro-view">
-                                    <p>
-                                        <span>View :&nbsp</span>
-                                        <span>{{$productDetail->pro_view}}</span>
-                                    </p>
-                                </div>
-                                <p class="availability in-stock">Quantity remaining in stock:{{number_format($productDetail->pro_number)}} </p>
-                                <div class="actions-e">
-                                    <div class="action-buttons-single">
-                                        <div class="inputx-content">
-                                            <label for="qty">Quantity:</label>
-                                            <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty"
-                                                   class="input-text qty">
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <a style="border: 1px solid red" href="{{route('add.shopping.cart', $productDetail->id)}}"
-                                               class="add_to_cart">ADD TO CART</a>
-                                        </div>
-                                    </div>
-                                </div>
+{{--                <div class="col-md-7 col-sm-7 col-xs-12">--}}
+{{--                    <div class="product-li st-wrapper">--}}
+{{--                        <div class="single-product">--}}
+{{--                            <div class="product-content">--}}
+{{--                                <h1 class="product-name"><a href="#">{{$productDetail->pro_name}}</a></h1>--}}
+{{--                                <div class="rating-price">--}}
+{{--                                    <div class="stars">--}}
+{{--                                        <form action="">--}}
+{{--                                            <input class="star star-5" id="star-5" type="radio" name="star"/>--}}
+{{--                                            <label class="star star-5" for="star-5"></label>--}}
+{{--                                            <input class="star star-4" id="star-4" type="radio" name="star"/>--}}
+{{--                                            <label class="star star-4" for="star-4"></label>--}}
+{{--                                            <input class="star star-3" id="star-3" type="radio" name="star"/>--}}
+{{--                                            <label class="star star-3" for="star-3"></label>--}}
+{{--                                            <input class="star star-2" id="star-2" type="radio" name="star"/>--}}
+{{--                                            <label class="star star-2" for="star-2"></label>--}}
+{{--                                            <input class="star star-1" id="star-1" type="radio" name="star"/>--}}
+{{--                                            <label class="star star-1" for="star-1"></label>--}}
+{{--                                        </form>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="price-boxes">--}}
+{{--                                        <span class="new-price" style="color: red">{{number_format($productDetail->pro_price)}} VND</span>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="product-desc">--}}
+{{--                                    <p>{{$productDetail->pro_description}}</p>--}}
+{{--                                </div>--}}
+{{--                                <div class="pro-view">--}}
+{{--                                    <p>--}}
+{{--                                        <span>View :&nbsp</span>--}}
+{{--                                        <span>{{$productDetail->pro_view}}</span>--}}
+{{--                                    </p>--}}
+{{--                                </div>--}}
+{{--                                <p class="availability in-stock">Quantity remaining in stock:{{number_format($productDetail->pro_number)}} </p>--}}
+{{--                                <div class="actions-e">--}}
+{{--                                    <div class="action-buttons-single">--}}
+{{--                                        <div class="inputx-content">--}}
+{{--                                            <label for="qty">Quantity:</label>--}}
+{{--                                            <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty"--}}
+{{--                                                   class="input-text qty">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="add-to-cart">--}}
+{{--                                            <a style="border: 1px solid red" href="{{route('add.shopping.cart', $productDetail->id)}}"--}}
+{{--                                               class="add_to_cart">ADD TO CART</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+                <aside class="product_info">
+                    <div class="arena_price">
+                        <strong>9.000.000</strong>
+                    </div>
+                    <div class="area_promotion zero">
+                        <strong data-count="4"
+                        >Khuyến mãi
+                            <i
+                            >Giá và khuyến mãi dự kiến áp dụng đến
+                                20/09</i
+                            ></strong
+                        >
+                        <div class="infopr">
+                                <span
+                                    class="pro596803"
+                                    data-g="WebNote"
+                                    data-date="9/30/2020 11:07:00 PM"
+                                    data-return=""
+                                    data-fromvalue="0"
+                                    data-tovalue="10"
+                                >
+                                    Tặng 2 suất mua Đồng hồ thời trang giảm 40%
+                                    (không áp dụng thêm khuyến mãi khác)
+                                    <a
+                                        href="https://www.thegioididong.com/tin-tuc/san-dong-ho-deo-tay-thoi-thuong-gia-re-het-hon-1266764"
+                                        target="_blank"
+                                    >(click xem chi tiết)</a
+                                    >
+                                </span>
+                            <span
+                                class="pro590574"
+                                data-g="WebNote"
+                                data-date="9/30/2020 11:07:00 PM"
+                                data-return=""
+                                data-fromvalue="0"
+                                data-tovalue="10"
+                            >
+                                    Phụ kiện mua kèm giảm 20% (không áp dụng phụ
+                                    kiện hãng, không áp dụng đồng thời KM khác)
+                                </span>
+                        </div>
+                        <div class="area_order area_orderM">
+                            <a
+                                id="mua-ngay"
+                                href="/them-vao-gio-hang?productId=213591&amp;isTransferContactsOrGuide=true&amp;isNoteMoreColorProduct=true&amp;noteMoreProductCodes=0131491002017,0131491002018,0131491002048,"
+                                class="buy_now"
+                                data-value="213591"
+                            ><b>Mua ngay</b
+                                ><span
+                                >Giao tận nơi hoặc nhận tại siêu
+                                        thị</span
+                                ></a
+                            >
+                        </div>
+                        <div class="callorder">
+                            <div class="ct">
+                                    <span
+                                    >Gọi đặt mua:
+                                        <a href="tel:0965158092">0965158092</a>
+                                    </span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </aside>
             </div>
             <div class="col-md-12"
             style="display: block;

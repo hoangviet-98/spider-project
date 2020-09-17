@@ -25,10 +25,9 @@
                         </div>
                         <div class="form-group">
                             <label>Spa:</label>
-                            <option value="">---Please choose Spa---</option>
                             <select class="form-control" name="spa_id">
-                                @foreach ($spa as $spa_id)
-                                    <option value="">Choose Spa</option>
+                                <option value="">---Please choose Spa---</option>
+                            @foreach ($spa as $spa_id)
                                     <option value="{{ $spa_id->id}}">{{$spa_id->spa_name}}</option>
                                 @endforeach
                             </select>
