@@ -68,7 +68,7 @@ class AdminController extends Controller
         //Doanh thu theo thang
         $revenueTransactionMonth = Transaction::where('tr_status', 2)
             ->whereMonth('created_at',date('m'))
-            ->select(DB::raw('sum(tr_status) as totalMoney'), DB::raw('DATE(created_at) day'))
+            ->select(DB::raw('sum(tr_total) as totalMoney'), DB::raw('DATE(created_at) day'))
             ->groupBy('day')
             ->get()->toArray();
             dd($revenueTransactionMonth);
