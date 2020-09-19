@@ -14,10 +14,13 @@ class AdminTransactionController extends Controller
 {
     public function index()
     {
+        $transactions = Transaction::paginate(10);
+
         $sid =  Auth::guard('admins')->user()->spa_id;
-        $transactions = Transaction::where('tr_spa_id','=', $sid)->paginate(10);
+        $transactionsAdmin =  Transaction::where('tr_spa_id','=', $sid)->paginate(10);
         $viewData = [
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'transactionsAdmin' => $transactionsAdmin,
         ];
         return view('admin.transaction.index', $viewData);
 //        if(Auth::guard('admins')->user()->role_id!=2) return abort('404');

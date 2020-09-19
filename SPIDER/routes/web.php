@@ -38,6 +38,9 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'account'], function () {
 Route::group(['namespace' => 'Frontend'], function (){
    Route::get('/','HomeController@index')->name('get.home');
 
+   Route::get('/404','HomeController@error_page')->name('get.errors');
+
+
     Route::get('category/{slug}-{id}', 'CategoryController@getlistProduct')->name('get.list.product');
     Route::get('/product','ProductController@index')->name('get.all.product');
     Route::get('product/{slug}-{id}', 'ProductDetailController@productDetail')->name('get.detail.product');

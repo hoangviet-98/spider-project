@@ -189,19 +189,7 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="home">
                             <div class="product-tab-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est
-                                    tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis
-                                    justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id
-                                    nulla. Donec a neque libero. Pellentesque aliquet, sem eget laoreet ultrices, ipsum
-                                    metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. </p>
-                                <p>Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien
-                                    libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet,
-                                    consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi
-                                    posuere nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit
-                                    et, luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget.
-                                    Nam erat mi, rutrum at sollicitudin rhoncus, ultricies posuere erat. Duis convallis,
-                                    arcu nec aliquam consequat, purus felis vehicula felis, a dapibus enim lorem nec
-                                    augue.</p>
+                                {{$productDetail->pro_content}}
                             </div>
                         </div>
                     </div>

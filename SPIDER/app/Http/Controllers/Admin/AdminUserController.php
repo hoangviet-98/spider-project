@@ -48,7 +48,7 @@ class AdminUserController extends Controller
         return redirect()->route('admin.get.list.user');
 //        } catch(\Exception $exception){
 //            DB::rollBack();
-//            Log::error('Message :' . $exception->getMessage() . '--- Line: ' .$exception->getLine());
+//            Log::errors('Message :' . $exception->getMessage() . '--- Line: ' .$exception->getLine());
 
 
     }

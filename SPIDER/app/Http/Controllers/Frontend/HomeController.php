@@ -16,6 +16,10 @@ class HomeController extends FrontendController
         parent::__construct();
     }
 
+    public function error_page()
+    {
+        return view('errors.404');
+    }
     public function index()
     {
 //        Mail::to('hoangviet180498@gmail.com')->send(new OrderShipped());

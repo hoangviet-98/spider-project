@@ -70,6 +70,7 @@
                                 <tr>
                                     <th style="width: 10px">ID</th>
                                     <th>Product Name</th>
+                                    <th>Content</th>
                                     <th>Amount</th>
                                     <th>Category</th>
                                     <th>Image</th>
@@ -83,6 +84,7 @@
                                     <tr>
                                         <th>{{$product->id}}</th>
                                         <th>{{$product->pro_name}}</th>
+                                        <th>{{$product->pro_content}}</th>
                                         <th>{{$product->pro_number}}</th>
 
                                         <td>{{$product->category->cat_name}}</td>

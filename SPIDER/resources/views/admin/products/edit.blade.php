@@ -7,42 +7,18 @@
 @section('js')
     @parent
     <script src="admincontrol/js/file_manage/file.js"></script>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+
     <script>
-        var editor_config = {
-            path_absolute: "/",
-            selector: "textarea.my-editor",
-            plugins: [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-            relative_urls: false,
-            file_browser_callback: function (field_name, url, type, win) {
-                var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-                var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
-
-                var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
-                if (type == 'image') {
-                    cmsURL = cmsURL + "&type=Images";
-                } else {
-                    cmsURL = cmsURL + "&type=Files";
-                }
-
-                tinyMCE.activeEditor.windowManager.open({
-                    file: cmsURL,
-                    title: 'Filemanager',
-                    width: x * 0.8,
-                    height: y * 0.8,
-                    resizable: "yes",
-                    close_previous: "no"
-                });
-            }
+        let options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
         };
-
-        tinymce.init(editor_config);
+    </script>
+    <script>
+        CKEDITOR.replace( 'editor' ,options);
     </script>
 @endsection
 
@@ -67,16 +43,15 @@
                     <h1 class="display-3">Update a Product</h1>
                     <form method="post" action="" enctype="multipart/form-data">
 
-                    @csrf
+                        @csrf
                         <div class="form-group">
-
                             <label for="pro_name">Name:</label>
                             <input type="text" class="form-control" name="pro_name"
                                    value="{{ $hv_product->pro_name }}"/>
                             @if($errors->has('pro_name'))
                                 <span class="error-text">
-{{$errors->first('pro_name')}}
-</span>
+                            {{$errors->first('pro_name')}}
+                                </span>
                             @endif
                         </div>
                         <div class="form-group">
@@ -91,18 +66,20 @@
                                    value="{{ $hv_product->pro_description }}"/>
                             @if($errors->has('pro_description'))
                                 <span class="error-text">
-                  {{$errors->first('pro_description')}}
-                </span>
+                            {{$errors->first('pro_description')}}
+                                </span>
                             @endif
                         </div>
                         <div class="form-group">
                             <label>Content:</label>
-                            <textarea name="pro_content" class="form-control my-editor" rows="8">{{ $hv_product->pro_content }}</textarea>
+                            <textarea name="pro_content" id="editor" class="form-control my-editor"
+                                      rows="8">{{ $hv_product->pro_content }}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label>Description Sale:</label>
-                            <input type="text" class="form-control" name="pro_description_seo" value="{{ $hv_product->pro_description_seo }}">
+                            <input type="text" class="form-control" name="pro_description_seo"
+                                   value="{{ $hv_product->pro_description_seo }}">
                         </div>
 
                         <div class="form-group">
@@ -111,8 +88,8 @@
                                    value="{{ $hv_product->pro_price }}"/>
                             @if($errors->has('pro_price'))
                                 <span class="error-text">
-{{$errors->first('pro_price')}}
-</span>
+                                {{$errors->first('pro_price')}}
+                                </span>
                             @endif
                         </div>
                         <div class="form-group">
@@ -129,7 +106,8 @@
 
                         <div class="form-group">
                             <label>Avatar:</label>
-                            <input type="file" class="form-control-file" name="pro_avatar" value="{{ $hv_product->pro_avatar }}">
+                            <input type="file" class="form-control-file" name="pro_avatar"
+                                   value="{{ $hv_product->pro_avatar }}">
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>

@@ -21,7 +21,7 @@
     {{--                        alert('Add Product Success');--}}
     {{--                    }--}}
     {{--                },--}}
-    {{--                error: function () {--}}
+    {{--                errors: function () {--}}
     {{--                }--}}
     {{--            });--}}
     {{--        }--}}

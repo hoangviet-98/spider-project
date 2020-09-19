@@ -54,7 +54,7 @@ class ShoppingCartController extends FrontendController
 //            ], 200);
 //
 //        } catch (\Exception $exception) {
-//            Log::error('message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
+//            Log::errors('message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
 //            return response()->json([
 //                'code' => 500,
 //                'message' => 'fail'
