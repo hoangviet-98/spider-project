@@ -52,7 +52,7 @@ jQuery.ajaxTransport( "script", function( s ) {
 					charset: s.scriptCharset,
 					src: s.url
 				} ).on(
-					"load error",
+					"load errors",
 					callback = function( evt ) {
 						script.remove();
 						callback = null;
