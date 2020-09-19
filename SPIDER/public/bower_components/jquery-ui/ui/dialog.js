@@ -198,7 +198,7 @@ return $.widget( "ui.dialog", {
 		if ( !this.opener.filter( ":focusable" ).focus().length ) {
 
 			// support: IE9
-			// IE9 throws an "Unspecified error" accessing document.activeElement from an <iframe>
+			// IE9 throws an "Unspecified errors" accessing document.activeElement from an <iframe>
 			try {
 				activeElement = this.document[ 0 ].activeElement;
 

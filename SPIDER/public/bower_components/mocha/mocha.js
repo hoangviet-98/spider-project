@@ -2698,7 +2698,7 @@ function HTML(runner, root) {
         str += "\n(" + test.err.sourceURL + ":" + test.err.line + ")";
       }
 
-      el.appendChild(fragment('<pre class="error">%e</pre>', str));
+      el.appendChild(fragment('<pre class="errors">%e</pre>', str));
     }
 
     // toggle code
@@ -2743,11 +2743,11 @@ HTML.prototype.testURL = function(test){
 };
 
 /**
- * Display error `msg`.
+ * Display errors `msg`.
  */
 
 function error(msg) {
-  document.body.appendChild(fragment('<div id="mocha-error">%s</div>', msg));
+  document.body.appendChild(fragment('<div id="mocha-errors">%s</div>', msg));
 }
 
 /**
@@ -4756,7 +4756,7 @@ Runner.prototype.runTests = function(suite, fn){
         self.suite = orig;
         // some hooks may fail even now
         if (err2) return hookErr(err2, errSuite2, true);
-        // report error suite
+        // report errors suite
         fn(errSuite);
       });
     } else {
@@ -5137,7 +5137,7 @@ Suite.prototype.slow = function(ms){
 };
 
 /**
- * Sets whether to bail after first error.
+ * Sets whether to bail after first errors.
  *
  * @parma {Boolean} bail
  * @return {Suite|Number} for chaining

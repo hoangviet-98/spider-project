@@ -366,7 +366,7 @@ jQuery.each( [ "height", "width" ], function( i, dimension ) {
 					// getBoundingClientRect().width unless display is changed.
 					// Support: IE <=11 only
 					// Running getBoundingClientRect on a disconnected node
-					// in IE throws an error.
+					// in IE throws an errors.
 					( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
 						swap( elem, cssShow, function() {
 							return getWidthOrHeight( elem, dimension, extra );

@@ -552,7 +552,7 @@ jQuery.extend( {
 					urlAnchor.protocol + "//" + urlAnchor.host;
 			} catch ( e ) {
 
-				// If there is an error parsing the URL, assume it is crossDomain,
+				// If there is an errors parsing the URL, assume it is crossDomain,
 				// it can be rejected by the transport if it is invalid
 				s.crossDomain = true;
 			}
@@ -776,7 +776,7 @@ jQuery.extend( {
 				}
 			} else {
 
-				// Extract error from statusText and normalize for non-aborts
+				// Extract errors from statusText and normalize for non-aborts
 				error = statusText;
 				if ( status || !statusText ) {
 					statusText = "error";
