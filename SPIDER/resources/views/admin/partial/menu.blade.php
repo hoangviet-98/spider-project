@@ -76,8 +76,11 @@
                         <i class="fa fa-windows" aria-hidden="true"></i> <span>Spa</span>
                     </a>
                 </li>
-{{--                @endif--}}
-{{--                @if (Auth::guard('admins')->user()->role_id===2)--}}
+                <li class="{{ \Request::route()->getName() == 'admin.get.list.service' ? 'active' : '' }}">
+                    <a href="{{ route('admin.get.list.service') }}">
+                        <i class="fa fa-windows" aria-hidden="true"></i> <span>Service</span>
+                    </a>
+                </li>
 
                     <li class="{{ \Request::route()->getName() == 'admin.get.list.employee' ? 'active' : '' }}">
                         <a href="{{ route('admin.get.list.employee') }}">

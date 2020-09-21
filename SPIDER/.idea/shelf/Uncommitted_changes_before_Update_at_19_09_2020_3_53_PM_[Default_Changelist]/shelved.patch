@@ -1,0 +1,312 @@
+Index: database/migrations/2020_09_15_112248_create_table_booking.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- database/migrations/2020_09_15_112248_create_table_booking.php	(date 1600169537402)
++++ database/migrations/2020_09_15_112248_create_table_booking.php	(date 1600169537402)
+@@ -0,0 +1,36 @@
++<?php
++
++use Illuminate\Database\Migrations\Migration;
++use Illuminate\Database\Schema\Blueprint;
++use Illuminate\Support\Facades\Schema;
++
++class CreateTableBooking extends Migration
++{
++    /**
++     * Run the migrations.
++     *
++     * @return void
++     */
++    public function up()
++    {
++        Schema::create('booking', function (Blueprint $table) {
++            $table->bigIncrements('id');
++            $table->string('customer_name')->nullable();
++            $table->dateTime('date_time')->nullable();
++            $table->string('content')->nullable();
++            $table->integer('spa_id')->default(0);
++            $table->longText('note')->nullable();
++            $table->timestamps();
++        });
++    }
++
++    /**
++     * Reverse the migrations.
++     *
++     * @return void
++     */
++    public function down()
++    {
++        Schema::dropIfExists('booking');
++    }
++}
+Index: resources/views/admin/booking/index.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- resources/views/admin/booking/index.blade.php	(date 1600171661510)
++++ resources/views/admin/booking/index.blade.php	(date 1600171661510)
+@@ -0,0 +1,97 @@
++@extends('layouts.master_admin')
++
++@section('title')
++    <title>List Booking</title>
++@endsection
++
++@section('js')
++    @parent
++
++    <script src="admincontrol/js/sweetAlert2/js/sweetalert2@9.js"></script>
++    <script src="admincontrol/js/logInAdmin/js/list_product.js"></script>
++    <script src="admincontrol/js/logInAdmin/js/list_product.js"></script>
++
++@endsection
++
++@section('css')
++    @parent
++@endsection
++
++@section('content')
++    <meta name="csrf-token" content="{{ csrf_token() }}">
++    <base href="{{asset('')}}">
++    <div class="content-wrapper">
++        <section class="content-header">
++            <h1>
++                Data Tables
++                <small>advanced tables</small>
++            </h1>
++            <ol class="breadcrumb">
++                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
++                <li><a href="#">Tables</a></li>
++                <li class="active">Data tables</li>
++            </ol>
++        </section>
++
++        <div class="back-home">
++            <a style="margin: 19px;"
++               href="{{ route('admin.get.create.booking')}}" class=""> <i
++                    class="fa fa-plus-circle"> </i> New Booking</a>
++        </div>
++        <!-- Main content -->
++        <section class="content">
++            <div class="row">
++                <div class="box">
++                    <div class="box-header">
++                        <div class="box-title">
++                            <form class="form-inline" action="">
++                                <input type="text" class="form-control" value="{{\Request::get('id')}}" name="id"
++                                       placeholder="ID">
++                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>
++                                </button>
++                            </form>
++                        </div>
++                    </div>
++                </div>
++            </div>
++            <div class="box-body">
++                <table id="example1" class="table table-bordered table-striped">
++                    <thead>
++                    <tr>
++                        <th style="width: 10px">ID</th>
++                        <th>Customer Name</th>
++                        <th>Spa Name</th>
++                        <th>Date and Time</th>
++                        <th>Content</th>
++                        <th>Note</th>
++                        <th colspan=3>Actions</th>
++                    </tr>
++                    </thead>
++                    <tbody>
++                    @foreach($booking as $bok)
++                        <tr>
++                            <th>{{$bok->id}}</th>
++                            <td>{{$bok->customer_name}}</td>
++                            <td>{{$bok->spa->spa_name}}</td>
++                            <td>{{$bok->date_time}}</td>
++                            <td>{{$bok->b_content}}</td>
++                            <td>{{$bok->note}}</td>
++                            <td>
++                                <a style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px"
++                                   href="{{ route('admin.get.edit.booking',$bok->id)}}"> <i class="fa fa-pencil"> </i></a>
++
++                                <a href=""
++                                   style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px; color:red"
++                                   data-url="{{ route('admin.get.delete.booking', $bok->id)}}"
++                                   class="fa fa-trash-o action_delete"> </a>
++                                @csrf
++                            </td>
++                    @endforeach
++                    </tbody>
++                </table>
++            </div>
++        </section>
++    </div>
++    <!-- Modal -->
++@endsection
++
+Index: app/Http/Controllers/Admin/AdminBookingController.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/Http/Controllers/Admin/AdminBookingController.php	(date 1600172762512)
++++ app/Http/Controllers/Admin/AdminBookingController.php	(date 1600172762512)
+@@ -0,0 +1,80 @@
++<?php
++
++namespace App\Http\Controllers\Admin;
++
++use App\Http\Controllers\Controller;
++use App\Models\Booking;
++use App\Models\Spa;
++use Illuminate\Http\Request;
++use Illuminate\Support\Facades\Log;
++use SebastianBergmann\Comparator\Book;
++
++class AdminBookingController extends Controller
++{
++    public function index(Request $request)
++    {
++        $booking = Booking::whereRaw(1);
++        if ($request->id) $booking->where('id', $request->id);
++        $booking = $booking->orderByDesc('id')->paginate(10);
++        return view('admin.booking.index', compact('booking'));
++    }
++
++    public function create()
++    {
++        $spa = $this->getSpa();
++        return view('admin.booking.create', compact('spa'));
++    }
++
++    public function getSpa()
++    {
++        return Spa::all();
++    }
++
++    public function store(Request $request)
++    {
++        $this->insertOrUpdate($request);
++        return redirect()->route('admin.get.list.booking');
++    }
++
++    public function insertOrUpdate($request, $id='')
++    {
++        $booking                  = new Booking();
++        if($id) $booking = Booking::find($id);
++        $booking->customer_name = $request->customer_name;
++        $booking->date_time = $request->date_time;
++        $booking->b_content = $request->b_content;
++        $booking->spa_id = $request->spa_id;
++        $booking->note = $request->note;
++        $booking->save();
++
++    }
++    public function edit($id)
++    {
++        $booking = Booking::find($id);
++        $spa = $this->getSpa();
++        return view('admin.booking.edit', compact('booking','spa'));
++    }
++    public function update(Request $request, $id)
++    {
++        $this->insertOrUpdate($request, $id);
++        return redirect()->route('admin.get.list.booking');
++    }
++    public function delete($id)
++    {
++        try {
++            Booking::find($id)->delete();
++            return response()->json([
++                'code' => 200,
++                'message' => 'success'
++            ], 200);
++
++        } catch (\Exception $exception) {
++            Log::error('message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
++            return response()->json([
++                'code' => 500,
++                'message' => 'fail'
++            ], 500);
++        }
++    }
++}
++
+Index: resources/views/admin/booking/create.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- resources/views/admin/booking/create.blade.php	(date 1600171693985)
++++ resources/views/admin/booking/create.blade.php	(date 1600171693985)
+@@ -0,0 +1,67 @@
++@extends('layouts.master_admin')
++
++@section('title')
++    <title>Create Booking</title>
++@endsection
++
++@section('css')
++    @parent
++@endsection
++@section('content')
++    <div class="content-wrapper">
++        <!-- Content Header (Page header) -->
++        <section class="content-header">
++        </section>
++        <div class="back-home">
++            <p><a style="margin: 19px"
++                  href="{{ route('admin.get.list.booking') }}">
++                    <i class="fa fa-arrow-circle-left"> </i>
++                    Về danh sách
++                </a></p>
++        </div>
++        <form method="post" action="" enctype="multipart/form-data">
++            <section class="content">
++                <div class="row">
++                    <div class="col-md-12">
++                        <div>
++                            @csrf
++                            <div class="form-group">
++                                <label for="customer_name">Customer Name:</label>
++                                <input type="text" class="form-control" name="customer_name" value="{{old('customer_name')}}"
++                                       placeholder="Please input customer_name"
++                                >
++                            </div>
++                            <div class="form-group">
++                                <label for="example-datetime-local-input"  class="col-2 col-form-label">Date and time</label>
++                                <div class="col-10">
++                                    <input class="form-control" type="datetime-local" name="date_time" required value="2011-08-19 13:45:00" id="example-datetime-local-input">
++                                </div>
++                            </div>
++                            <div class="form-group">
++                                <label>Content</label>
++                                <textarea class="form-control" name="b_content" rows="3" required></textarea>
++                            </div>
++                            <div class="form-group">
++                                <label>Spa</label>
++                                <select class="form-control" name="spa_id" required>
++                                    <option value="">---Chọn chi nhánh spa---</option>
++                                    @foreach ($spa as $spa_id)
++                                        <option value="{{ $spa_id->id}}">{{$spa_id->spa_name}}</option>
++                                    @endforeach
++                                </select>
++                            </div>
++                            <div class="form-group">
++                                <label>Note</label>
++                                <input class="form-control" type="text" name="note" value="">
++                            </div>
++                            <button type="submit" class="btn btn-primary">Add Product</button>
++                            {{-- <input type="submit" name="submit" value="Add" class="btn btn-primary">
++                            <a href="#" class="btn btn-danger">Cancel</a>
++                            {{csrf_field()}} --}}
++                        </div>
++                    </div>
++                </div>
++            </section>
++        </form>
++    </div>
++@endsection

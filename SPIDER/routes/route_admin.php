@@ -179,6 +179,21 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
         Route::get('/delete/{id}', 'AdminMenuController@delete')->name('admin.get.delete.menu');
     });
 
+    //Service 
+    //Menu
+    Route::group(['prefix' => 'service'], function () {
+
+        Route::get('/', 'AdminServiceController@index')->name('admin.get.list.service');
+
+        Route::get('/create', 'AdminServiceController@create')->name('admin.get.create.service');
+        Route::post('/create', 'AdminServiceController@store');
+
+        Route::get('/update/{id}', 'AdminServiceController@edit')->name('admin.get.edit.service');
+        Route::post('/update/{id}', 'AdminServiceController@update');
+
+        Route::get('/delete/{id}', 'AdminServiceController@delete')->name('admin.get.delete.service');
+    });
+
 
     //boking
     Route::group(['prefix' => 'booking'], function () {
