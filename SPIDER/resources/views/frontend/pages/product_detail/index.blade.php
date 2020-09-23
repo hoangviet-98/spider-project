@@ -8,7 +8,6 @@
     <!-- <script src="customer/js/product/jquery.scrollUp.min.js"></script> -->
     <!-- <script src="customer/js/product/modernizr-2.8.3.min.js"></script> -->
     <script src="customer/js/product/main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 @endsection
@@ -17,6 +16,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="customer/css/productindex.css">
     <link rel="stylesheet" href="customer/css/product-detail.css">
+    <link rel="stylesheet" href="customer/css/media.css">
+
     <style>
 
 
@@ -206,7 +207,7 @@
                             <div class="all-singlepost">
                                 <!-- single latestpost start -->
                                 @foreach($productSuggests as $suggests)
-                                    <div class="col-md-3 col-sm-4 col-xs-12">
+                                    <div class="col-md-3 col-sm-4">
                                         <div class="single-post" style="margin-bottom: 40px">
                                             <div class="post-thumb">
                                                 <a href="{{route('get.detail.product', [$suggests->pro_slug, $suggests->id])}}">

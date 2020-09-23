@@ -1,5 +1,5 @@
 @foreach($productsNew as $new)
-    <div class="col-md-3 col-sm-4 col-xs-12">
+    <div class="col-md-3 col-sm-4">
         <div class="single-post" style="margin-bottom: 40px">
             <div class="post-thumb">
                 <a href="{{route('get.detail.product', [$new->pro_slug, $new->id])}}">

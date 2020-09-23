@@ -65,22 +65,54 @@ class AdminController extends Controller
             ->limit(5)
             ->get();
         $listDay = Date::getListDayInMonth();
-        //Doanh thu theo thang
+        //Doanh thu theo thang done
         $revenueTransactionMonth = Transaction::where('tr_status', 2)
             ->whereMonth('created_at',date('m'))
             ->select(DB::raw('sum(tr_total) as totalMoney'), DB::raw('DATE(created_at) day'))
             ->groupBy('day')
             ->get()->toArray();
-            dd($revenueTransactionMonth);
+//        dump($revenueTransactionMonth);
+        //receive
+        $revenueTransactionMonthDefault  = Transaction::where('tr_status', 0)
+            ->whereMonth('created_at',date('m'))
+            ->select(DB::raw('sum(tr_total) as totalMoney'), DB::raw('DATE(created_at) day'))
+            ->groupBy('day')
+            ->get()->toArray();
+        $arrRevenueTransactionMonth = [];
+        $arrRevenueTransactionMonthDefault = [];
+        foreach ($listDay as $day) {
+            $total = 0;
+            foreach ($revenueTransactionMonth as $key => $revenue) {
+               if ($revenue['day'] == $day) {
+                   $total = $revenue['totalMoney'];
+                   break;
+               }
+            }
+            $arrRevenueTransactionMonth[] = (int)$total;
+        }
+
+        foreach ($listDay as $day) {
+            $total = 0;
+            foreach ($revenueTransactionMonthDefault as $key => $revenue) {
+                if ($revenue['day'] == $day) {
+                    $total = $revenue['totalMoney'];
+                    break;
+                }
+            }
+            $arrRevenueTransactionMonthDefault[] = (int)$total;
+        }
+
         $viewData = [
-            'totalTransactions' => $totalTransactions,
-            'totalArticles' => $totalArticles,
-            'totalUsers' => $totalUsers,
-            'transactions' => $transactions,
-            'topProduct' => $topProduct,
-            'totalSchedules' => $totalSchedules,
-            'statusTransaction' => json_encode($statusTransaction),
-            'listDay' => json_encode($listDay),
+            'totalTransactions'             => $totalTransactions,
+            'totalArticles'                 => $totalArticles,
+            'totalUsers'                    => $totalUsers,
+            'transactions'                  => $transactions,
+            'topProduct'                    => $topProduct,
+            'totalSchedules'                => $totalSchedules,
+            'statusTransaction'             => json_encode($statusTransaction),
+            'listDay'                       => json_encode($listDay),
+            'arrRevenueTransactionMonth'    => json_encode($arrRevenueTransactionMonth),
+            'arrRevenueTransactionMonthDefault'    => json_encode($arrRevenueTransactionMonthDefault),
 
             //Admin
             'totalTransactionsAdmin' => $totalTransactionsAdmin,

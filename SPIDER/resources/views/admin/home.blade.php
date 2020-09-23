@@ -18,6 +18,12 @@
         let listday = $("#container2").attr("data-list-day")
         listday = JSON.parse(listday);
 
+        let listMoneyMonth = $("#container2").attr('data-money');
+        listMoneyMonth = JSON.parse(listMoneyMonth);
+
+        let listMoneyMonthDefault = $("#container2").attr('data-money-default');
+        listMoneyMonthDefault = JSON.parse(listMoneyMonthDefault);
+
         Highcharts.chart('container', {
 
             chart: {
@@ -51,7 +57,7 @@
                 text: 'Sales chart of days of the month'
             },
             subtitle: {
-                text: 'Source: WorldClimate.com'
+                text: ''
             },
             xAxis: {
                 categories: listday
@@ -80,29 +86,21 @@
                 }
             },
             series: [{
-                name: 'Tokyo',
+                name: 'Complete the transaction',
                 marker: {
                     symbol: 'square'
                 },
-                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12, {
-                    y: 26.5,
-                    marker: {
-                        symbol: 'url(https://www.highcharts.com/samples/graphics/sun.png)'
-                    }
-                }, 23.3, 18.3, 13.9, 9.6]
+                data: listMoneyMonth,
 
-            }, {
-                name: 'London',
-                marker: {
-                    symbol: 'diamond'
-                },
-                data: [{
-                    y: 3.9,
+            },
+                {
+                    name: 'Receive the transaction',
                     marker: {
-                        symbol: 'url(https://www.highcharts.com/samples/graphics/snow.png)'
-                    }
-                }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-            }]
+                        symbol: 'square'
+                    },
+                    data: listMoneyMonthDefault,
+
+                }]
         });
     </script>
 @endsection
@@ -245,7 +243,10 @@
             <div class="row" style="margin-bottom: 30px">
                 <div class="col-sm-8">
                     <figure class="highcharts-figure">
-                        <div id="container2" data-list-day="{{$listDay}}"></div>
+                        <div id="container2" data-list-day="{{$listDay}}"
+                             data-money-default={{$arrRevenueTransactionMonthDefault}}
+                             data-money={{$arrRevenueTransactionMonth}}>
+                </div>
                     </figure>
                 </div>
                 <div class="col-sm-4">

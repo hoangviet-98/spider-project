@@ -7,7 +7,7 @@
                          src="{{ asset(pare_url_file($aNews->a_avatar)) }}" alt=""/>
                 </a>
             </div>
-            <div class="post-thumb-info">
+            <div class="post-thumb-info1">
                 <div class="post-time">
                     <a href="#">Beauty</a>
                     <span>/</span>

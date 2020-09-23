@@ -34,6 +34,8 @@
 @section('css')
     @parent
     <link rel="stylesheet" href="customer/css/productindex.css">
+    <link rel="stylesheet" href="customer/css/media.css">
+
 @endsection
 @section('content')
     <div class="hv">

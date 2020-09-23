@@ -255,11 +255,7 @@ a:hover {
     font-weight: normal;
 }
 
-@media (min-width: 768px) {
-    .col-sm-4{
-        float: left;
-    }
-}
+
 
 .area-title {
     text-align: center;

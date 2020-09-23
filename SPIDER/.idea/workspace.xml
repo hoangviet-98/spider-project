@@ -23,9 +23,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d121e22c-73cd-43c4-b8b6-23f087adb264" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_15_112248_create_table_booking.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/booking/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/booking/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/customer/css/media.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/customer/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/customer/css/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/customer/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/customer/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/customer/css/productindex.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/customer/css/productindex.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/customer/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/customer/js/bootstrap.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/login/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/login/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/components/article_hot.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/components/article_hot.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/components/product_new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/components/product_new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/pages/home/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/pages/home/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/pages/product_detail/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/pages/product_detail/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/partial/menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/partial/menu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master_frontend.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master_frontend.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,6 +224,7 @@
       <workItem from="1600495143405" duration="3901000" />
       <workItem from="1600505867642" duration="626000" />
       <workItem from="1600532147903" duration="2012000" />
+      <workItem from="1600865656682" duration="11836000" />
     </task>
     <task id="LOCAL-00001" summary="Add-LoginAuth">
       <created>1599591260746</created>
@@ -414,15 +427,15 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1355" y="130" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600445301822" />
-    <state x="-1341" y="309" key="run.anything.popup" timestamp="1600433875993">
+    <state x="-1341" y="309" key="run.anything.popup" timestamp="1600874900018">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1341" y="309" key="run.anything.popup/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600433875993" />
+    <state x="-1341" y="309" key="run.anything.popup/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600874900018" />
     <state x="579" y="309" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600012185959" />
-    <state x="-1381" y="183" width="840" height="856" key="search.everywhere.popup" timestamp="1600415716688">
+    <state x="-1381" y="183" width="840" height="856" key="search.everywhere.popup" timestamp="1600875685037">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1381" y="183" width="840" height="856" key="search.everywhere.popup/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600415716688" />
+    <state x="-1381" y="183" width="840" height="856" key="search.everywhere.popup/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600875685037" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1600173235853" />
     <state x="539" y="183" width="840" height="856" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599994616454" />
   </component>
