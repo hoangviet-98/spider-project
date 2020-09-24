@@ -55,7 +55,10 @@
 {{--                                                    <a href="#">Hello {{Auth::user()->name}}</a>--}}
 {{--                                                </li>--}}
                                                 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1203">
-                                                    <a href="#">Gio hang</a>
+                                                    <a href="{{route('get.user.dashboard')}}">Manage Account</a>
+                                                </li>
+                                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1203">
+                                                    <a href="#">Cart</a>
                                                 </li>
                                                 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1203">
                                                     <a href="{{route('get.logout.user')}}">Thoat</a>
