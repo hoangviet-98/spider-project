@@ -26,7 +26,7 @@ class AdminTransactionController extends Controller
 //        if(Auth::guard('admins')->user()->role_id!=2) return abort('404');
 //        $id = Auth::id();
 //        $transactions = Transaction::where('tr_spa_id', $id)->orderBy('created_at')->paginate(10);
-//        return view('admin.transaction.index', compact('transactions'));
+//        return view('admin.transactions.blade.php.index', compact('transactions'));
     }
 
     public function getTransactionDetail(Request $request, $id)

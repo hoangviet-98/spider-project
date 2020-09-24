@@ -34,7 +34,7 @@
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control" name="password" autocomplete="current-password">
 
-                                    {{--                                @errors('password')--}}
+                                    {{--                                @error('password')--}}
                                     {{--                                    <span class="invalid-feedback" role="alert">--}}
                                     {{--                                        <strong>{{ $message }}</strong>--}}
                                     {{--                                    </span>--}}
@@ -72,6 +72,7 @@
                                     {{--                                @endif--}}
                                 </div>
                             </div>
+                            <a href="{{route('get.email_reset_password')}}">Quen mat khau</a>
                         </form>
                     </div>
                 </div>

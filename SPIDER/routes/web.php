@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 include('route_admin.php');
+include('route_user.php');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/allroles', function ( ){
@@ -33,6 +34,12 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'account'], function () {
     Route::post('login', 'LoginController@postLogin')->name('post.login');
 
     Route::get('logout', 'LoginController@getLogout')->name('get.logout.user');
+    Route::get('reset-password', 'ResetPasswordController@getEmailReset')->name('get.email_reset_password');
+    Route::post('reset-password', 'ResetPasswordController@checkEmailResetPassword');
+
+    Route::get('new-password', 'ResetPasswordController@newPassword')->name('get.new_password');
+    Route::post('new-password', 'ResetPasswordController@savePassword');
+
 });
 
 Route::group(['namespace' => 'Frontend'], function (){

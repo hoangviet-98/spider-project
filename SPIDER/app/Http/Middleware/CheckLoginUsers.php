@@ -12,6 +12,7 @@ class CheckLoginUsers
             return redirect()->route('get.login');
         }
         return $next($request);
+
     }
 
 }

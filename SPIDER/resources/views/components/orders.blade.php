@@ -21,7 +21,7 @@
         <td>{{$item->or_quantity}}</td>
         <td>{{number_format($item->or_price * $item->or_quantity)}}</td>
         <td>
-            <a href="{{route('ajax.admin.transaction.order_item', $item->id)}}" class="btn btn-xs btn-danger js-delete-order-item">Delete</a>
+            <a href="{{route('ajax.admin.transactions.blade.php.order_item', $item->id)}}" class="btn btn-xs btn-danger js-delete-order-item">Delete</a>
         </td>
     </tr>
     @endforeach

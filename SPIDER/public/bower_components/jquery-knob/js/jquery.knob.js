@@ -230,7 +230,7 @@
             // computes size and carves the component
             this._carve();
 
-            // prepares props for transaction
+            // prepares props for transactions.blade.php
             if (this.v instanceof Object) {
                 this.cv = {};
                 this.copy(this.v, this.cv);

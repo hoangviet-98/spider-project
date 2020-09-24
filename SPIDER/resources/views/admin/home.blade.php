@@ -86,7 +86,7 @@
                 }
             },
             series: [{
-                name: 'Complete the transaction',
+                name: 'Complete the transactions.blade.php',
                 marker: {
                     symbol: 'square'
                 },
@@ -94,7 +94,7 @@
 
             },
                 {
-                    name: 'Receive the transaction',
+                    name: 'Receive the transactions.blade.php',
                     marker: {
                         symbol: 'square'
                     },
@@ -134,7 +134,7 @@
                         <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Transactions</span>
-                            <span class="info-box-number">{{$totalTransactions}} <small><a href="{{route('admin.get.list.transaction')}}">(View Detail)</a></small></span>
+                            <span class="info-box-number">{{$totalTransactions}} <small><a href="{{route('admin.get.list.transactions.blade.php')}}">(View Detail)</a></small></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -192,7 +192,7 @@
                             <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Transactions</span>
-                                <span class="info-box-number">{{$totalTransactionsAdmin}} <small><a href="{{route('admin.get.list.transaction')}}">(View Detail)</a></small></span>
+                                <span class="info-box-number">{{$totalTransactionsAdmin}} <small><a href="{{route('admin.get.list.transactions.blade.php')}}">(View Detail)</a></small></span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -328,7 +328,7 @@
 
                                             <td>{{isset($item->spa->spa_name) ? $item->spa->spa_name : '[N\A]'}}</td>
                                             <td>
-                                                <a href="{{ route('admin.get.action.transaction', ['active', $item->id]) }}"
+                                                <a href="{{ route('admin.get.action.transactions.blade.php', ['active', $item->id]) }}"
                                                    class="label {{$item->getStatus($item->tr_status ) ['class'] }} ">
 
                                                     {{$item->getStatus($item->tr_status) ['name'] }}
@@ -360,7 +360,7 @@
 
                                                 <td>{{isset($item->spa->spa_name) ? $item->spa->spa_name : '[N\A]'}}</td>
                                                 <td>
-                                                    <a href="{{ route('admin.get.action.transaction', ['active', $item->id]) }}"
+                                                    <a href="{{ route('admin.get.action.transactions.blade.php', ['active', $item->id]) }}"
                                                        class="label {{$item->getStatus($item->tr_status ) ['class'] }} ">
 
                                                         {{$item->getStatus($item->tr_status) ['name'] }}
@@ -377,7 +377,7 @@
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer clearfix">
-                            <a href="{{route('admin.get.list.transaction')}}" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+                            <a href="{{route('admin.get.list.transactions.blade.php')}}" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
                         </div>
                         <!-- /.box-footer -->
                     </div>

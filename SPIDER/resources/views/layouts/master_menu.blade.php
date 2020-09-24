@@ -49,9 +49,9 @@
 
 <div class="wrapper">
 
-@include('admin.partial.header')
+    @include('user.partial.header')
 
-@include('admin.partial.menu')
+    @include('user.partial.menu')
 
 
 
@@ -80,79 +80,79 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/PACE/pace.min.js"></script>
     <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-        <script type="text/javascript">
-            // make Pace works on Ajax calls
-            $(document).ajaxStart(function () {
-                Pace.restart()
+    <script type="text/javascript">
+        // make Pace works on Ajax calls
+        $(document).ajaxStart(function () {
+            Pace.restart()
+        })
+        $('.ajax').click(function () {
+            $.ajax({
+                url: '#' , success: function (result) {
+                    $('.ajax-content').html('<hr>Ajax Request Completa !')
+                }
             })
-            $('.ajax').click(function () {
+        })
+        $(function () {
+            $(".js-preview-transactions.blade.php").click(function (event) {
+                event.preventDefault();
+                let $this = $(this);
+                let URL   = $this.attr('href');
+                let ID    = $this.attr('data-id');
+                $("#transaction_id").html("#" + ID);
                 $.ajax({
-                    url: '#' , success: function (result) {
-                        $('.ajax-content').html('<hr>Ajax Request Completa !')
-                    }
-                })
-            })
-            $(function () {
-                $(".js-preview-transactions.blade.php").click(function (event) {
-                    event.preventDefault();
-                    let $this = $(this);
-                    let URL   = $this.attr('href');
-                    let ID    = $this.attr('data-id');
-                    $("#transaction_id").html("#" + ID);
-                    $.ajax({
-                        url: URL
-                    }).done(function (results) {
-                        console.log(results)
-                        $("#modal-preview-transactions.blade.php .content").html(results.html)
-                        $("#modal-preview-transactions.blade.php").modal({
-                            show : true
-                        })
-                    });
-                })
-                $('body').on("click", '.js-delete-order-item', function (event) {
-                   event.preventDefault();
-                   let URL    = $(this).attr('href');
-                   let $this  = $(this);
-                   $.ajax({
-                       url:URL
-                   }).done(function (results) {
-                        if (results.code == 200) {
-                            $this.parents("tr").remove();
-                        }
-                   })
+                    url: URL
+                }).done(function (results) {
+                    console.log(results)
+                    $("#modal-preview-transactions.blade.php .content").html(results.html)
+                    $("#modal-preview-transactions.blade.php").modal({
+                        show : true
+                    })
                 });
             })
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#out_img').attr('src', e.target.result);
+            $('body').on("click", '.js-delete-order-item', function (event) {
+                event.preventDefault();
+                let URL    = $(this).attr('href');
+                let $this  = $(this);
+                $.ajax({
+                    url:URL
+                }).done(function (results) {
+                    if (results.code == 200) {
+                        $this.parents("tr").remove();
                     }
-                    reader.readAsDataURL(input.files[0]); // convert to base64 string
-                }
-            }
-            $("#input_img").change(function() {
-                readURL(this);
+                })
             });
-        </script>
+        })
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#out_img').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+        $("#input_img").change(function() {
+            readURL(this);
+        });
+    </script>
 
-{{--        <script type="text/javascript">--}}
-{{--            $(document).ajaxStart(function() {--}}
-{{--                Pace.restart();--}}
-{{--            });--}}
-{{--            $('ajax').click(function (){--}}
-{{--                $.ajax({--}}
-{{--                    url: '#', success: function (result){--}}
-{{--                        $('.ajax-content').html('<hr> Ajax Request Completed !')--}}
-{{--                    }--}}
-{{--                })--}}
-{{--            })--}}
+    {{--        <script type="text/javascript">--}}
+    {{--            $(document).ajaxStart(function() {--}}
+    {{--                Pace.restart();--}}
+    {{--            });--}}
+    {{--            $('ajax').click(function (){--}}
+    {{--                $.ajax({--}}
+    {{--                    url: '#', success: function (result){--}}
+    {{--                        $('.ajax-content').html('<hr> Ajax Request Completed !')--}}
+    {{--                    }--}}
+    {{--                })--}}
+    {{--            })--}}
 
-{{--                // function showDetailOrder(id) {--}}
-{{--                //     console.log(id);--}}
-{{--                //     $('#myModalOrder').modal();--}}
-{{--                // }--}}
-{{--        </script>--}}
+    {{--                // function showDetailOrder(id) {--}}
+    {{--                //     console.log(id);--}}
+    {{--                //     $('#myModalOrder').modal();--}}
+    {{--                // }--}}
+    {{--        </script>--}}
 
 @show
 

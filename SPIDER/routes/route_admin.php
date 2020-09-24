@@ -21,7 +21,7 @@ Route::group(['prefix' => 'authenticate', 'namespace' => 'Admin\Auth'], function
 });
 
 //
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'check_admin_login'], function (){
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'check_user_login'], function (){
 
     Route::get('/', 'AdminController@dashboardAdmin')->name('get.dashboard.admin');
 
@@ -142,13 +142,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
     });
 
     // ql don hang
-    Route::group(['prefix' => 'transaction'], function () {
-        Route::get('/', 'AdminTransactionController@index')->name('admin.get.list.transaction');
+    Route::group(['prefix' => 'transactions.blade.php'], function () {
+        Route::get('/', 'AdminTransactionController@index')->name('admin.get.list.transactions.blade.php');
 
-        Route::get('/delete/{id}', 'AdminTransactionController@delete')->name('admin.get.delete.transaction');
-        Route::get('order-delete/{id}', 'AdminTransactionController@deleteOrderItem')->name('ajax.admin.transaction.order_item');
-        Route::get('/view-transaction/{id}', 'AdminTransactionController@getTransactionDetail')->name('ajax.admin.transaction.detail');;
-        Route::get('/{action}/{id}', 'AdminTransactionController@action')->name('admin.get.action.transaction');;
+        Route::get('/delete/{id}', 'AdminTransactionController@delete')->name('admin.get.delete.transactions.blade.php');
+        Route::get('order-delete/{id}', 'AdminTransactionController@deleteOrderItem')->name('ajax.admin.transactions.blade.php.order_item');
+        Route::get('/view-transactions.blade.php/{id}', 'AdminTransactionController@getTransactionDetail')->name('ajax.admin.transactions.blade.php.detail');;
+        Route::get('/{action}/{id}', 'AdminTransactionController@action')->name('admin.get.action.transactions.blade.php');;
     });
 
     // ql dat lich
@@ -179,7 +179,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
         Route::get('/delete/{id}', 'AdminMenuController@delete')->name('admin.get.delete.menu');
     });
 
-    //Service 
+    //Service
     //Menu
     Route::group(['prefix' => 'service'], function () {
 

@@ -90,7 +90,7 @@
 
                                         <td>{{isset($transaction->spa->spa_name) ? $transaction->spa->spa_name : '[N\A]'}}</td>
                                         <td>
-                                            <a href="{{ route('admin.get.action.transaction', ['active', $transaction->id]) }}"
+                                            <a href="{{ route('admin.get.action.transactions.blade.php', ['active', $transaction->id]) }}"
                                                class="label {{$transaction->getStatus($transaction->tr_status ) ['class'] }} ">
 
                                                 {{$transaction->getStatus($transaction->tr_status) ['name'] }}
@@ -99,7 +99,7 @@
                                         </td>
                                         <td>
                                             <a data-id="{{$transaction->id}}"
-                                                href="{{route('ajax.admin.transaction.detail', $transaction->id)}}" class="js-preview-transaction"
+                                                href="{{route('ajax.admin.transactions.blade.php.detail', $transaction->id)}}" class="js-preview-transaction"
                                                style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px;"
                                             ><i class="fa fa-eye"></i></a>
 
@@ -113,20 +113,20 @@
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li><a href=""
                                                            style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px; color:red"
-                                                           data-url="{{ route('admin.get.delete.transaction', $transaction->id)}}"
+                                                           data-url="{{ route('admin.get.delete.transactions.blade.php', $transaction->id)}}"
                                                            class="fa fa-trash-o action_delete">Delete </a></li>
                                                     <li>
-                                                        <a href="{{route('admin.get.action.transaction', ['process', $transaction->id])}}">
+                                                        <a href="{{route('admin.get.action.transactions.blade.php', ['process', $transaction->id])}}">
                                                             <i class="fa fa-ban"></i> Dang giao hang
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('admin.get.action.transaction', ['success', $transaction->id])}}">
+                                                        <a href="{{route('admin.get.action.transactions.blade.php', ['success', $transaction->id])}}">
                                                             <i class="fa fa-ban"></i> Da giao hang
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('admin.get.action.transaction', ['cancel', $transaction->id])}}">
+                                                        <a href="{{route('admin.get.action.transactions.blade.php', ['cancel', $transaction->id])}}">
                                                             <i class="fa fa-ban"></i> Da huy
                                                         </a>
                                                     </li>

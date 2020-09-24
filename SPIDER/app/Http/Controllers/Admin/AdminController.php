@@ -56,7 +56,7 @@ class AdminController extends Controller
         //total user
         $totalUsers = User::select('id')->count();
 
-        //List transaction Admin
+        //List transactions.blade.php Admin
 //        $transactions = Transaction::orderByDesc('id')
 //                        ->limit(5)
 //                        ->get();
