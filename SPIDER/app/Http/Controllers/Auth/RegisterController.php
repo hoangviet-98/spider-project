@@ -38,7 +38,7 @@ class RegisterController extends Controller
         $data['password']   = Hash::make($data['password']);
         $id = User::insertGetId($data);
         if($id){
-            \Session::flash('toastr', [
+            Session::flash('toastr', [
                 'type'  => 'success',
                 'message'  => 'Register Success'
             ]);

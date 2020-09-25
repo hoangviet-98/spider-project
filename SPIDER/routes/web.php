@@ -2,29 +2,29 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+//
+///*
+//|--------------------------------------------------------------------------
+//| Web Routes
+//|--------------------------------------------------------------------------
+//|
+//| Here is where you can register web routes for your application. These
+//| routes are loaded by the RouteServiceProvider within a group which
+//| contains the "web" middleware group. Now create something great!
+//|
+//*/
+//
 include('route_admin.php');
 include('route_user.php');
-
-//Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('/allroles', function ( ){
-//    $admins = \App\Models\Admin::with('role')->first();
 //
-//    return $admins->role;
+////Route::get('/home', 'HomeController@index')->name('home');
+////Route::get('/allroles', function ( ){
+////    $admins = \App\Models\Admin::with('role')->first();
+////
+////    return $admins->role;
+////
+////});
 //
-//});
-
 Auth::routes();
 Route::group(['namespace' => 'Auth', 'prefix' => 'account'], function () {
     Route::get('register', 'RegisterController@getRegister')->name('get.register');
@@ -45,7 +45,7 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'account'], function () {
 Route::group(['namespace' => 'Frontend'], function (){
    Route::get('/','HomeController@index')->name('get.home');
 
-   Route::get('/404','HomeController@error_page')->name('get.errors');
+//   Route::get('/404','HomeController@error_page')->name('get.errors');
 
 
     Route::get('category/{slug}-{id}', 'CategoryController@getlistProduct')->name('get.list.product');

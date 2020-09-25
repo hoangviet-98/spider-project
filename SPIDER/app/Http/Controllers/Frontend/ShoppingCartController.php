@@ -14,6 +14,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class ShoppingCartController extends FrontendController
 {
@@ -29,6 +30,10 @@ class ShoppingCartController extends FrontendController
             'options' => [
                 'avatar' => $product->pro_avatar
             ],
+        ]);
+        Session::flash('toastr', [
+            'type'          => 'success',
+            'message'       => 'Add cart successfully'
         ]);
         return redirect()->back();
 
@@ -82,6 +87,11 @@ class ShoppingCartController extends FrontendController
             Cart::update($id, $qty);
             return response(['messages' => 'Cập nhật thành công']);
         }
+        return
+        Session::flash('toastr', [
+            'type'          => 'success',
+            'message'       => 'Update cart successfully'
+        ]);
     }
 
     public function getFormPay()
@@ -121,6 +131,10 @@ class ShoppingCartController extends FrontendController
                     ->increment("pro_pay");
             }
         }
+        Session::flash('toastr', [
+            'type'          => 'success',
+            'message'       => 'Your order has been saved'
+        ]);
         Cart::destroy();
         return redirect()->to('/');
 

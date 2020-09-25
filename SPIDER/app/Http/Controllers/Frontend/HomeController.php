@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends FrontendController
 {
