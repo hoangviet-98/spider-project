@@ -21,7 +21,7 @@ Route::group(['prefix' => 'authenticate', 'namespace' => 'Admin\Auth'], function
 });
 
 //
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'check_user_login'], function (){
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'check_admin_login'], function (){
 
     Route::get('/', 'AdminController@dashboardAdmin')->name('get.dashboard.admin');
 
