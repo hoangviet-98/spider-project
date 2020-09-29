@@ -9,6 +9,7 @@ use App\Services\ProcessViewService;
 
 class ProductDetailController extends FrontendController
 {
+
     public function productDetail(Request $request)
     {
         $url = $request->segment(2);

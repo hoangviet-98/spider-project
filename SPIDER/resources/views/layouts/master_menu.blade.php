@@ -39,6 +39,14 @@
         <link rel="stylesheet" href="admincontrol/css/master.css">
         <link rel="stylesheet" href="admincontrol/css/content.css">
 
+        <link rel="stylesheet" href="https://codeseven.github.io/toastr/build/toastr.min.css">
+        @if(session('toastr'))
+            <script>
+                var TYPE_MESSAGE = "{{session('toastr.type')}}";
+                var MESSAGE = "{{session('toastr.message')}}";
+            </script>
+    @endif
+
 @show
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -136,6 +144,20 @@
         });
     </script>
 
+    <script src="https://codeseven.github.io/toastr/build/toastr.min.js"></script>
+    <script type="text/javascript">
+        if(typeof TYPE_MESSAGE != "undefined")
+        {
+            switch (TYPE_MESSAGE) {
+                case 'success':
+                    toastr.success(MESSAGE)
+                    break;
+                case 'error':
+                    toastr.error(MESSAGE)
+                    break;
+            }
+        }
+    </script>
     {{--        <script type="text/javascript">--}}
     {{--            $(document).ajaxStart(function() {--}}
     {{--                Pace.restart();--}}

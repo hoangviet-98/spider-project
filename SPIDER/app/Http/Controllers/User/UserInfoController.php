@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequestUpdateInfo;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserInfoController extends Controller
 {
@@ -20,6 +21,11 @@ class UserInfoController extends Controller
         $data = $request->except('_token');
         $user = User::find(Auth::id());
         $user->update($data);
+
+        Session::flash('toastr', [
+            'type'          => 'success',
+            'message'       => 'Update Information Successfully'
+        ]);
 
         return redirect()->back();
     }

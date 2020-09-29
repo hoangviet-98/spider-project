@@ -25,7 +25,7 @@
                             idProduct : idProduct
                         }
                     }).done(function (results) {
-                        alert(results.messages);
+                        toastr.success(results.messages);
                         window.location.reload();
                     });
                 }

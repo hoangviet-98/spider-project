@@ -11,5 +11,4 @@ Route::group(['prefix' => 'account', 'namespace' => 'User','middleware' => 'chec
 
     Route::get('/transactions','UserTransactionController@index')->name('get.user.transactions');
 
-
 });
