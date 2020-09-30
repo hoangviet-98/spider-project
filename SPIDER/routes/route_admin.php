@@ -195,7 +195,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
     });
 
 
-    //boking
+    //booking
     Route::group(['prefix' => 'booking'], function () {
         Route::get('/', 'AdminBookingController@index')->name('admin.get.list.booking');
     });
@@ -207,6 +207,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
         Route::post('/update/{id}', 'AdminBookingController@update');
 
         Route::get('/delete/{id}', 'AdminBookingController@delete')->name('admin.get.delete.booking');
+    });
+
+    //review
+    Route::group(['prefix' => 'rating'], function () {
+        Route::get('/', 'AdminRatingController@index')->name('admin.get.list.rating');
+        Route::get('/delete/{id}', 'AdminRatingController@delete')->name('admin.get.delete.rating');
     });
 
 });

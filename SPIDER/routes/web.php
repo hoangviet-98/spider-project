@@ -46,6 +46,11 @@ Route::group(['namespace' => 'Frontend'], function (){
         Route::post('/pay', 'ShoppingCartController@saveInfoShoppingCart');
     });
 
+    Route::group(['prefix' => 'ajax', 'middleware' => 'check_user_login'], function () {
+        Route::post('/review/{id}', 'AdminRatingController@saveRating')->name('post.rating.product');
+    });
+
+
 //Article
     Route::get('post', 'ArticleController@getListArticle')->name('get.list.article');
 

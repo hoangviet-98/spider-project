@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 use App\Services\ProcessViewService;
 
@@ -19,9 +20,13 @@ class ProductDetailController extends FrontendController
         {
             $productDetail = Product::where('pro_active', Product::STATUS_PUBLIC)->find($id);
 
+            $ratings = Rating::with('users:id,name')
+                ->where('ra_product_id', $id)->orderBy('id', "DESC")->paginate(10);
+
             $viewData = [
                 'productDetail'   => $productDetail,
-                'productSuggests' => $this->getProductSuggests($productDetail->pro_category_id)
+                'productSuggests' => $this->getProductSuggests($productDetail->pro_category_id),
+                'ratings'         => $ratings
             ];
             ProcessViewService::view('hv_product', 'pro_view', 'productDetail', $id);
 

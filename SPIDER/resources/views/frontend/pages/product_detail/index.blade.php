@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
 
     <script type="text/javascript">
+        $.ajaxSetup({
+           headers: {
+               'x-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+           }
+        });
         $(function (){
            let listStart = $(".list-start .fa");
 
@@ -28,6 +33,8 @@
                 let $this = $(this);
                 let number = $this.attr('data-key');
                 listStart.removeClass('rating_active');
+
+                $(".number_rating").val(number);
                 $.each(listStart, function (key, value){
                    if (key + 1 <= number)
                    {
@@ -47,6 +54,29 @@
               }else {
                   $(".form_rating").addClass('hide').removeClass('active');
               }
+           });
+           $(".js_rating_product").click(function (event){
+              event.preventDefault();
+              let content = $("#ra_content").val();
+              let number  = $(".number_rating").val();
+              let url = $(this).attr('href');
+                if(content && number)
+                {
+                    $.ajax({
+                        url: url,
+                        type : "POST",
+                        data : {
+                            number  : number,
+                            r_content : content
+                        }
+                    }).done(function(result) {
+                        if(result.code == 1)
+                        {
+                            alert("Send review successfully !!!");
+                            location.reload();
+                        }
+                    });
+                }
            });
         });
     </script>
@@ -93,10 +123,13 @@
             margin-top: -6px;
         }
 
-        .list-start .rating_active {
+        .list-start .rating_active, .pro-rating .active {
             color: #ff9705;
         }
 
+         .rating .active {
+             color: #ff9705 !important;
+         }
     </style>
 @endsection
 @section('content')
@@ -203,14 +236,8 @@
                         <div class="indexstyle__ProductContent-qd1z2k-2 hyGdiA">
                             <div class="header border-bottom">
                                 <h1 class="title" itemprop="name">
-                                    <div class="icon-inline-with-title">
-                                        <a href="#"
-                                        ><img
-                                                src="https://salt.tikicdn.com/ts/upload/e9/68/49/50ac83c9f95bd008cc840e638f0f5791.png"
-                                                alt="tikinow"
-                                            /></a>
-                                    </div>
-                                    Bàn Phím Có Dây Dell KB216 - Đen - Hàng Chính Hãng
+
+                                    {{$productDetail->pro_name}}
                                 </h1>
                                 <div
                                     itemprop="aggregateRating"
@@ -227,34 +254,23 @@
                                         style="font-size: 17px"
                                         class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"
                                     >
-                                        <i class="icomoon icomoon-star"></i
-                                        ><i class="icomoon icomoon-star"></i
-                                        ><i class="icomoon icomoon-star"></i
-                                        ><i class="icomoon icomoon-star"></i
-                                        ><span class="half-star"
-                                        ><i class="icomoon icomoon-star"></i
-                                            ><i class="icomoon icomoon-star"></i
-                                            ></span>
+                                        <?php
+                                        $age = 0;
+                                        if($productDetail->pro_total_rating)
+                                        {
+                                            $age = round($productDetail->pro_total_number / $productDetail->pro_total_rating, 2);
+                                        }
+                                        ?>
+                                            <span class="rating">
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                    <i class="fa fa-star {{$i <= $age ? 'active' : ''}}" style="color: #999"></i>
+                                                @endfor
+                                                    </span>
+{{--                                            <span>{{$age}}</span>--}}
                                     </p>
-                                    <a class="number">(Xem 747 đánh giá)</a>
+                                    <a class="number"> Total Review: {{$productDetail->pro_total_rating}}</a>
                                 </div>
-                                <div class="bestseller">
-                                    <i class="icon prize"></i>
-                                    <p>
-                                <span>
-                                    Đứng thứ
-                                    <!-- -->1
-                                </span>
-                                        trong<!-- -->
-                                        <a
-                                            href="/bestsellers-month/ban-phim-van-phong/c1830"
-                                        >
-                                            Top 100
-                                            <!-- -->Bàn Phím Văn Phòng<!-- -->
-                                            bán chạy tháng này
-                                        </a>
-                                    </p>
-                                </div>
+
                                 <div class="brand">
                                     <div
                                         itemprop="brand"
@@ -270,9 +286,6 @@
                                     <h6>
                                         Thương hiệu:
                                         <a href="/thuong-hieu/dell.html">Dell</a>
-                                    </h6>
-                                    <h6>
-                                        SKU: <span itemprop="sku">8423800541641</span>
                                     </h6>
                                 </div>
                             </div>
@@ -298,8 +311,8 @@
                                         <div class="group">
                                             <div class="price-and-icon">
                                                 <p class="price">
-                                                    140.000<!-- -->
-                                                    ₫
+                                                   {{number_format($productDetail->pro_price)}}<!-- -->
+                                                    VNĐ
                                                 </p>
                                             </div>
                                             <p class="original-price first-child">
@@ -598,42 +611,41 @@
                         @endfor
                     </span>
                     <span class="list-text"></span>
+                    <input type="hidden" value="" class="number_rating">
                 </div>
             <div style="margin-top: 15px">
-                <textarea name="" class="form-control" id="" cols="30" rows="3 "></textarea>
+                <textarea name="" class="form-control" id="ra_content" cols="30" rows="3 "></textarea>
             </div>
             <div style="margin-top: 15px">
-                <a href="#" style="width: 200px; background: #288ad6; padding: 5px 10px; color: white; border-radius: 5px">Send Review</a>
+                <a href="{{route('post.rating.product', $productDetail)}}" class="js_rating_product" style="width: 200px; background: #288ad6; padding: 5px 10px; color: white; border-radius: 5px">Send Review</a>
             </div>
         </div>
     </div>
-{{--   <div class="submit-review" id="block-review">--}}
-{{--    <form action="" id="form-review" method="POST">--}}
-{{--        @csrf--}}
-{{--        <div>--}}
-{{--            <p style="margin-bottom: 0">--}}
-{{--                <span> Choose review</span>--}}
-{{--                <span id="ratings">--}}
-{{--                    @for ($i = 1; $i <= 5; $i++)--}}
-{{--                        <i class="la la-start active" data-i="{{$i}}"></i>--}}
-{{--                    @endfor--}}
-{{--                </span>--}}
-{{--                <span class="reviews-text" id="reviews-text">Great</span>--}}
-{{--            </p>--}}
-{{--                <span style="color: red; margin-bottom: 10px; display: block">(Click in start to review)</span>--}}
-{{--        </div>--}}
-{{--        <div>--}}
-{{--            <textarea name="content-review" id="rv_content" cols="30" rows="5" placeholder="Please input review product (litmited 80 word)"></textarea>--}}
-{{--            <input type="hidden" name="review" id="review_value value=5">--}}
-{{--        </div>--}}
-{{--        <button type="submit" style="font-size: 14px; margin-top: 10px" class="btn tbn-success js-process-review">--}}
-{{--            Send Review--}}
-{{--        </button>--}}
-{{--    </form>--}}
-{{--   </div>--}}
-{{--    <div class="reviews_list">--}}
-{{--    @include('frontend.pages.product_detail.include_inc_list_reviews')--}}
-{{--    </div>--}}
+
+{{--Review--}}
+    <div class="component-list-rating" style="margin: 0 350px 20px 250px;">
+            @if ( isset($ratings))
+                @foreach($ratings as $rating)
+            <div class="rating_item">
+                <div>
+                    <span style="color: #333; font-weight: bold;text-transform: capitalize;">{{$rating->users->name}}</span>
+                    <a href="" style="color: #2ba832;"><i class="fa fa-check-circle-o" style="margin-right: 0"></i>Da mua hang tai HanaSpa</a>
+                </div>
+                <p>
+                    <span class="pro-rating">
+                        @for ($i = 1; $i <= 5; $i++)
+                           <i class="fa fa-star {{$i <= $rating->ra_number ? 'active' : ''}}" style="margin-right: 0"></i>
+                        @endfor
+                    </span>
+                    <span>{{$rating->ra_content}}</span>
+                </p>
+                <div>
+                    <span><i class="fa fa-clock-o"></i>{{$rating->created_at}}</span>
+                </div>
+            </div>
+                @endforeach
+                @endif
+    </div>
 
 {{--    Same PRODUCTY --}}
             <div class="product" style="text-align: center; font-family: Open Sans, sans-serif;">

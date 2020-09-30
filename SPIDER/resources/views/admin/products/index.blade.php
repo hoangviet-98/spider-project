@@ -11,6 +11,11 @@
 
 @section('css')
     @parent
+    <style>
+        .rating .active {
+            color: #ff9705 !important;
+        }
+    </style>
 @endsection
 @section('content')
 
@@ -70,8 +75,6 @@
                                 <tr>
                                     <th style="width: 10px">ID</th>
                                     <th>Product Name</th>
-                                    <th>Content</th>
-                                    <th>Amount</th>
                                     <th>Category</th>
                                     <th>Image</th>
                                     <th>Status</th>
@@ -81,11 +84,31 @@
                                 </thead>
                                 <tbody>
                                 @foreach($hv_product as $product)
+                                    <?php
+                                        $age = 0;
+                                        if($product->pro_total_rating)
+                                            {
+                                                $age = round($product->pro_total_number / $product->pro_total_rating, 2);
+                                            }
+                                    ?>
                                     <tr>
                                         <th>{{$product->id}}</th>
-                                        <th>{{$product->pro_name}}</th>
-                                        <th>{{$product->pro_content}}</th>
-                                        <th>{{$product->pro_number}}</th>
+                                        <td style="text-align: left">
+                                            <ul>
+                                                <li><b>Name: </b>{{$product->pro_name}}</li>
+                                                <li><b>Amount: </b>{{$product->pro_number}}</li>
+                                                <li><b>Price: </b>{{number_format($product->pro_price)}} VNĐ</li>
+                                                <li><span>Review:</span>
+                                                    <span class="rating">
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            <i class="fa fa-star {{$i <= $age ? 'active' : ''}}" style="color: #999"></i>
+                                                        @endfor
+                                                    </span>
+                                                    <span>{{$age}}</span>
+                                                </li>
+                                            </ul>
+                                        </td>
+
 
                                         <td>{{$product->category->cat_name}}</td>
 

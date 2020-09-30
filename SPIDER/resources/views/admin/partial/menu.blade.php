@@ -109,6 +109,12 @@
                         <i class="fa fa-windows" aria-hidden="true"></i> <span>Menu</span>
                     </a>
                 </li>
+
+                    <li class="{{ \Request::route()->getName() == 'admin.get.list.rating' ? 'active' : '' }}">
+                        <a href="{{ route('admin.get.list.rating') }}">
+                            <i class="fa fa-windows" aria-hidden="true"></i> <span>Rating</span>
+                        </a>
+                    </li>
                     @endif
 
                 @if (Auth::guard('admins')->user()->role_id===2)
