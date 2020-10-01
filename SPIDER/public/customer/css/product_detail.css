@@ -321,11 +321,6 @@ input {
     overflow: visible;
 }
 
-.dJbIjB .group-button {
-    margin-right: 20px;
-    flex: 1 1 0%;
-}
-
 .dJbIjB .btn.btn-add-to-cart {
     color: rgb(255, 255, 255);
     background-color: rgb(255, 57, 69);

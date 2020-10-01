@@ -47,7 +47,7 @@ Route::group(['namespace' => 'Frontend'], function (){
     });
 
     Route::group(['prefix' => 'ajax', 'middleware' => 'check_user_login'], function () {
-        Route::post('/review/{id}', 'AdminRatingController@saveRating')->name('post.rating.product');
+        Route::post('/review/{id}', 'RatingController@saveRating')->name('post.rating.product');
     });
 
 

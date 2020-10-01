@@ -20,6 +20,7 @@
             <script>
                 var TYPE_MESSAGE = "{{session('toastr.type')}}";
                 var MESSAGE = "{{session('toastr.message')}}";
+
             </script>
         @endif
     @show
@@ -66,6 +67,11 @@
                     break;
             }
         }
+
+        $(".js-show-login").click(function (event){
+           event.preventDefault();
+           toastr.warning("You need to be logged in to perform this function")
+        });
     </script>
 
 @show

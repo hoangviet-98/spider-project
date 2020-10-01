@@ -79,6 +79,11 @@
                 }
            });
         });
+
+        function relocate_home()
+        {
+            location.href = "{{route('add.shopping.cart', $productDetail->id)}}";
+        }
     </script>
 @endsection
 @section('css')
@@ -130,6 +135,31 @@
          .rating .active {
              color: #ff9705 !important;
          }
+    </style>
+
+{{--Image Slide--}}
+    <style>
+        #myCarousel .list-inline {
+            white-space:nowrap;
+            overflow-x:auto;
+        }
+
+        #myCarousel .carousel-indicators {
+            position: static;
+            left: initial;
+            width: initial;
+            margin-left: initial;
+        }
+
+        #myCarousel .carousel-indicators > li {
+            width: initial;
+            height: initial;
+            text-indent: initial;
+        }
+
+        #myCarousel .carousel-indicators > li.active img {
+            opacity: 0.7;
+        }
     </style>
 @endsection
 @section('content')
@@ -251,9 +281,8 @@
                                 </div>
                                 <div class="indexstyle__Review-qd1z2k-3 kYNzX">
                                     <p
-                                        style="font-size: 17px"
-                                        class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"
-                                    >
+                                        class="carousel-inner"style="font-size: 17px"
+                                        class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ">
                                         <?php
                                         $age = 0;
                                         if($productDetail->pro_total_rating)
@@ -356,65 +385,27 @@
                                                     việc thoát nước dễ dàng nhanh chóng,
                                                     không đọng nước trên bàn phím
                                                 </li>
-                                                <li>Dây 2m</li>
-                                                <li>
-                                                    Có 6 miếng đệm cao su phía dưới bán
-                                                    phím để tránh trượt trong quá trình
-                                                    sử dụng
-                                                </li>
-                                                <li>
-                                                    Các phím được bố trí theo công nghệ
-                                                    Zero Degree Titl không gây tiếng ồn
-                                                    khi sử dụng
-                                                </li>
                                             </ul>
                                         </div>
                                         <div class="group border-top">
                                             <div
                                                 class="indexstyle__AddToCart-qd1z2k-8 dJbIjB"
                                             >
-                                                <div
-                                                    style="
-                                                margin-top: -7px;
-                                                margin-right: 20px;
-                                            "
-                                                    class="QualityInput__Wrapper-sc-15mlmyf-0 fXfceZ"
-                                                >
-                                                    <p class="label">Số lượng:</p>
-                                                    <div class="group-input">
-                                                        <button>-</button
-                                                        ><input
-                                                            type="text"
-                                                            value="1"
-                                                            class="input"
-                                                        /><button>+</button>
-                                                    </div>
-                                                </div>
                                                 <div class="group-button">
-                                                    <button
-                                                        class="btn btn-add-to-cart"
-                                                        admicro-data-event="GET_VALUE"
-                                                        admicro-data-auto="1"
-                                                        admicro-data-order="false"
-                                                    >
-                                                <span
-                                                    class="tikicon icon-add-to-cart2x"
-                                                ></span
-                                                >Chọn mua
-                                                    </button>
+{{--                                                    <button class="btn btn-add-to-cart add_to_cart"--}}
+{{--                                                            href="{{route('add.shopping.cart', $productDetail->id)}}"--}}
+{{--                                                            style="width: 20px">--}}
+{{--                                                        Add To Cart--}}
+{{--                                                    </button>--}}
+
+                                                    <input type="button" class="btn btn-add-to-cart"
+                                                           href="{{route('add.shopping.cart', $productDetail->id)}}"
+                                                           value="Add To Cart" onclick=" relocate_home()">
+
                                                 </div>
-                                                <button
-                                                    class="btn-add-favorite"
-                                                    admicro-data-event="GET_VALUE"
-                                                    admicro-data-auto="1"
-                                                    admicro-data-order="false"
-                                                >
-                                            <span
-                                                class="icomoon icomoon-heart-o"
-                                            ></span
-                                            ><span class="tooltip"
-                                                    >Thêm vào yêu thích</span
-                                                    >
+                                            <span class="iconoon iconoon-heart-o"></span>
+                                                    <span class="tooltip">Thêm vào yêu thích</span>
+                                                <i class="fa fa-heart-o" style="margin: 5px 0 0 8px;font-size: 25px;"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -562,34 +553,45 @@
             </div>
     </div>
 
-{{--Form Review--}}
+    {{--Form Review--}}
 
     <div class="component-rating" style="margin: 0 350px 20px 250px;">
-        <h3>Review Product</h3>
+        <h3>Review Product :</h3>
+{{--        <b>{{$productDetail->pro_total_rating}}</b>--}}
+        <b>{{$productDetail->pro_name}}</b>
         <div class="component-rating_content" style="display: flex; align-items: center; border: 1px solid #ddd">
             <div class="rating-item" style="width: 20%; position: relative">
+                <?php
+                $age = $productDetail->pro_total_number / $productDetail->pro_total_rating;
+                ?>
              <span class="fa fa-star" style="font-size: 100px; display:  block; color: #ff9705;margin: 0 auto; text-align: center"></span>
-                <b style="position: absolute;top: 38%;left: 54%;transform: translateX(-50%) translateX(-50%);color: white;font-size: 20px">5.0</b>
+                <b style="position: absolute;top: 38%;left: 54%;transform: translateX(-50%) translateX(-50%);color: white;font-size: 20px">{{$age}}</b>
             </div>
                 <div class="list-rating" style="width: 60%; font-size: 14px" >
-                    @for ($i = 1; $i <= 5; $i++)
+                    @foreach ($ratingDefault as $key => $item)
                     <div class="item-rating" style="display: flex;align-items: center">
                             <div style="width: 10%">
-                                {{$i}} <span class="fa fa-star" style="color: grey"></span>
+                                {{$key}} <span class="fa fa-star" style="color: grey"></span>
                             </div>
                             <div style="width: 70%; margin: 0 20px;">
-                                <span style="width:100%; height: 8px;display: block; border: 1px solid #dedede; border-radius: 5px; background-color: #dedede">
+                                <span style="width: {{($item['count_number']/ $productDetail->pro_total_rating) * 100}}%;
+                                    height: 8px;display: block; border: 1px solid #dedede; border-radius: 5px; background-color: #dedede">
                                     <b style="width: 30%;background-color: #f25800; display: block; height: 100%; border-radius: 5px; ">
                                     </b></span>
                             </div>
                             <div style="width: 20%">
-                                <a href="" >300 Review</a>
+                                <span class="item_review-count" style="color: rgb(0, 127, 240);">
+                                    <b>{{$item['count_number']}}</b>
+                                    Review
+                                </span>
                             </div>
                     </div>
-                    @endfor
+                    @endforeach
                 </div>
-            <div class="" style="width: 20%">
-                <a href="#" class="js_rating_action"  style="width: 200px; background-color: #288ad6;padding: 10px;color: white;border-radius: 5px">Send Review</a>
+            <div class="rating_btn" style="width: 20%">
+                <a href="javascript:;void(0)" class=" {{Auth::id() ? "js_rating_action" : "js-show-login"}}"
+                   style="width: 200px; background-color: #288ad6;padding: 10px;color: white;border-radius: 5px"
+                    title="Send Review">Send Review</a>
             </div>
         </div>
 
