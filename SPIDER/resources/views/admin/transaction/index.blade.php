@@ -7,7 +7,7 @@
     @parent
 
     <script src="admincontrol/js/sweetAlert2/js/sweetalert2@9.js"></script>
-    {{--    <script src="admincontrol/js/logInAdmin/js/list_product.js"></script>--}}
+{{--        <script src="admincontrol/js/logInAdmin/js/list_product.js"></script>--}}
     {{--    <script src="admincontrol/js/table/dataTables.bootstrap.min.js"></script>--}}
     {{--    <script src="admincontrol/js/table/jquery.dataTables.min.js"></script>--}}
     {{--    <script src="admincontrol/js/table/table.js"></script>--}}
@@ -85,12 +85,12 @@
                                                 <li>Phone:{{$transaction->tr_phone}}</li>
                                             </ul>
                                         </td>
-                                        <td>{{$transaction->tr_total}}</td>
+                                        <td>{{number_format($transaction->tr_total)}} VND</td>
                                         <td>{{$transaction->created_at}}</td>
 
                                         <td>{{isset($transaction->spa->spa_name) ? $transaction->spa->spa_name : '[N\A]'}}</td>
                                         <td>
-                                            <a href="{{ route('admin.get.action.transactions.blade.php', ['active', $transaction->id]) }}"
+                                            <a href="{{ route('admin.get.action.transactions', ['active', $transaction->id]) }}"
                                                class="label {{$transaction->getStatus($transaction->tr_status ) ['class'] }} ">
 
                                                 {{$transaction->getStatus($transaction->tr_status) ['name'] }}
@@ -99,7 +99,7 @@
                                         </td>
                                         <td>
                                             <a data-id="{{$transaction->id}}"
-                                                href="{{route('ajax.admin.transactions.blade.php.detail', $transaction->id)}}" class="js-preview-transaction"
+                                                href="{{route('ajax.admin.transactions.detail', $transaction->id)}}" class="js-preview-transaction"
                                                style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px;"
                                             ><i class="fa fa-eye"></i></a>
 
@@ -113,20 +113,20 @@
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li><a href=""
                                                            style="padding: 5px 10px; border: 1px solid #eee; font-size: 12px; color:red"
-                                                           data-url="{{ route('admin.get.delete.transactions.blade.php', $transaction->id)}}"
+                                                           data-url="{{ route('admin.get.delete.transactions', $transaction->id)}}"
                                                            class="fa fa-trash-o action_delete">Delete </a></li>
                                                     <li>
-                                                        <a href="{{route('admin.get.action.transactions.blade.php', ['process', $transaction->id])}}">
+                                                        <a href="{{route('admin.get.action.transactions', ['process', $transaction->id])}}">
                                                             <i class="fa fa-ban"></i> Dang giao hang
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('admin.get.action.transactions.blade.php', ['success', $transaction->id])}}">
+                                                        <a href="{{route('admin.get.action.transactions', ['success', $transaction->id])}}">
                                                             <i class="fa fa-ban"></i> Da giao hang
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('admin.get.action.transactions.blade.php', ['cancel', $transaction->id])}}">
+                                                        <a href="{{route('admin.get.action.transactions', ['cancel', $transaction->id])}}">
                                                             <i class="fa fa-ban"></i> Da huy
                                                         </a>
                                                     </li>
@@ -138,6 +138,9 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            <div style="text-align: center">
+                                {!! $transactions->links() !!}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -157,7 +160,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="content">
-
+    <h1>heheheh</h1>
                     </div>
                 </div>
                 <div class="modal-footer">

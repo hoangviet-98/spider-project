@@ -87,8 +87,8 @@
                             <i class="fa fa-windows" aria-hidden="true"></i> <span>Employee</span>
                         </a>
                     </li>
-                    <li class="{{ \Request::route()->getName() == 'admin.get.list.transactions.blade.php' ? 'active' : '' }}">
-                        <a href="{{ route('admin.get.list.transactions.blade.php') }}">
+                    <li class="{{ \Request::route()->getName() == 'admin.get.list.transactions' ? 'active' : '' }}">
+                        <a href="{{ route('admin.get.list.transactions') }}">
                             <i class="fa fa-windows" aria-hidden="true"></i> <span>Transaction</span>
                         </a>
                     </li>
@@ -129,7 +129,7 @@
                             <i class="fa fa-windows" aria-hidden="true"></i> <span>Employee</span>
                         </a>
                     </li>
-                    <li class="{{ \Request::route()->getName() == 'admin.get.list.transactions.blade.php' ? 'active' : '' }}">
+                    <li class="{{ \Request::route()->getName() == 'admin.get.list.transactions' ? 'active' : '' }}">
                         <a href="{{ route('admin.get.list.transactions.blade.php') }}">
                             <i class="fa fa-windows" aria-hidden="true"></i> <span>Transaction</span>
                         </a>

@@ -14,7 +14,7 @@ class AdminTransactionController extends Controller
 {
     public function index()
     {
-        $transactions = Transaction::paginate(10);
+        $transactions = Transaction::paginate(5);
 
         $sid =  Auth::guard('admins')->user()->spa_id;
         $transactionsAdmin =  Transaction::where('tr_spa_id','=', $sid)->paginate(10);
