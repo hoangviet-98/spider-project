@@ -150,6 +150,9 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            <div style="text-align: center">
+                                {!! $hv_product->links() !!}
+                            </div>
                         </div>
                     </div>
                 </div>

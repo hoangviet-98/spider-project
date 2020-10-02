@@ -105,6 +105,9 @@
                                     </tbody>
                                 </table>
                             </table>
+                            <div style="text-align: center">
+                                {!! $hv_categories->links() !!}
+                            </div>
                         </div>
                     </div>
                 </div>

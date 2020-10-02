@@ -15,7 +15,7 @@ class AdminArticleController extends Controller
     {
         $hv_article = Article::whereRaw(1);
         if ($request->name) $hv_article->where('a_name', 'like', '%' .$request->name. '%');
-        $hv_article = $hv_article->paginate(10);
+        $hv_article = $hv_article->paginate(5);
         $hv_menu = $this->getMenu();
 
         $viewData = [

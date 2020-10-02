@@ -19,7 +19,7 @@ class AdminProductController extends Controller
         $hv_product = Product::with('category:id,cat_name');
         if ($request->name) $hv_product->where('pro_name', 'like', '%' . $request->name . '%');
         if ($request->cat) $hv_product->where('pro_category_id', $request->cat);
-        $hv_product = $hv_product->orderByDesc('id')->paginate(10);
+        $hv_product = $hv_product->orderByDesc('id')->paginate(5);
         $hv_category = $this->getCategories();
 
         $viewData = [

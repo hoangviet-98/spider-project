@@ -93,7 +93,7 @@
                 })
             })
             $(function () {
-                $(".js-preview-transactions.blade.php").click(function (event) {
+                $(".js-preview-transaction").click(function (event) {
                     event.preventDefault();
                     let $this = $(this);
                     let URL   = $this.attr('href');
@@ -103,8 +103,8 @@
                         url: URL
                     }).done(function (results) {
                         console.log(results)
-                        $("#modal-preview-transactions.blade.php .content").html(results.html)
-                        $("#modal-preview-transactions.blade.php").modal({
+                        $("#modal-preview-transaction .content").html(results.html)
+                        $("#modal-preview-transaction").modal({
                             show : true
                         })
                     });
@@ -122,6 +122,8 @@
                    })
                 });
             })
+
+
             function readURL(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();

@@ -12,7 +12,7 @@ class AdminCategoryController extends Controller
 {
     public function index()
     {
-        $hv_categories = Category::paginate(10);
+        $hv_categories = Category::paginate(5);
         $viewData = [
             'hv_categories' => $hv_categories
         ];

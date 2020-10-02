@@ -78,6 +78,9 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            <div style="text-align: center">
+                                {!! $hv_article->links() !!}
+                            </div>
                         </div>
                     </div>
                 </div>
