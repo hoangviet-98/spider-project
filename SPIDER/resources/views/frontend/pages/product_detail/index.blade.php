@@ -536,15 +536,10 @@
             border-top: 1px solid #e4e4e4;
             margin-top: 15px;">
                 <div class="single-product-tab">
-                <h2 style="color: #1B1B9D;
-    line-height: 29px;
-    margin-top: 30px;
-    font-size: 20px;
-">Đặc điểm nổi bật của Acer Aspire 3 A315 34 P26U N5030/4GB/256GB/Win10 (NX.HE3SV.00H)</h2>
-                    <!-- Tab panes -->
+                                <!-- Tab panes -->
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="home">
-                            <div class="product-tab-content">
+                            <div class="product-tab-content" style="text-align: center;">
                                 {!! $productDetail->pro_content !!}
                             </div>
                         </div>
@@ -562,10 +557,12 @@
         <div class="component-rating_content" style="display: flex; align-items: center; border: 1px solid #ddd">
             <div class="rating-item" style="width: 20%; position: relative">
                 <?php
+                $age = 0;
+                if ($productDetail->pro_total_rating)
                 $age = $productDetail->pro_total_number / $productDetail->pro_total_rating;
                 ?>
              <span class="fa fa-star" style="font-size: 100px; display:  block; color: #ff9705;margin: 0 auto; text-align: center"></span>
-                <b style="position: absolute;top: 38%;left: 54%;transform: translateX(-50%) translateX(-50%);color: white;font-size: 20px">{{$age}}</b>
+                <b style="position: absolute;top: 38%;left: 52%;transform: translateX(-50%) translateX(-50%);color: white;font-size: 20px">{{$age}}</b>
             </div>
                 <div class="list-rating" style="width: 60%; font-size: 14px" >
                     @foreach ($ratingDefault as $key => $item)
@@ -574,9 +571,14 @@
                                 {{$key}} <span class="fa fa-star" style="color: grey"></span>
                             </div>
                             <div style="width: 70%; margin: 0 20px;">
-                                <span style="width: {{($item['count_number']/ $productDetail->pro_total_rating) * 100}}%;
+                                <span style="width:100%;
                                     height: 8px;display: block; border: 1px solid #dedede; border-radius: 5px; background-color: #dedede">
-                                    <b style="width: 30%;background-color: #f25800; display: block; height: 100%; border-radius: 5px; ">
+                                    @php
+                                    $ageItem = 0;
+                                    if($productDetail->pro_total_rating)
+                                        $ageItem = ($item['count_number']/ $productDetail->pro_total_rating) * 100;
+                                    @endphp
+                                    <b style="width:{{$ageItem}}%; ;background-color: #f25800; display: block; height: 100%; border-radius: 5px; ">
                                     </b></span>
                             </div>
                             <div style="width: 20%">
@@ -646,6 +648,7 @@
                 </div>
             </div>
                 @endforeach
+                <a href="" class="btn-load-rating" style="padding: 7px 20px; color: #288ad6; border: solid 1px #288ad6;border-radius: 3px; text-align: center;box-sizing:border-box;margin: 10px 0 10px; display: inline-block; ">View all review <i class="fa fa-"></i></a>
                 @endif
     </div>
 

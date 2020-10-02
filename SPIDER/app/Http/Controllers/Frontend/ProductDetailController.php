@@ -22,7 +22,10 @@ class ProductDetailController extends FrontendController
             $productDetail = Product::where('pro_active', Product::STATUS_PUBLIC)->find($id);
 
             $ratings = Rating::with('users:id,name')
-                ->where('ra_product_id', $id)->orderBy('id', "DESC")->paginate(10);
+                ->where('ra_product_id', $id)
+                ->orderBy('id', "DESC")
+                ->limit(5)
+                ->get();
 
             $ratingStatistical = Rating::groupBy('ra_number')
                 ->where('ra_product_id', $id)
